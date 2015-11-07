@@ -28,8 +28,8 @@ Template.home.onCreated(function() {
         		var lat = location.substring(0, location.indexOf(", "));
         		var lng = location.substring(location.indexOf(" "));
           		var marker = new google.maps.Marker({
-            		draggable: true,
-            		animation: google.maps.Animation.DROP,
+            		//draggable: true,
+            		//animation: google.maps.Animation.DROP,
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		id: document._id
