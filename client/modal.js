@@ -1,6 +1,7 @@
 Template.eventModal.helpers({
     markerInfo: function() {
     	var markerId = Session.get('markerId');
-    	return Markers.findOne(markerId);
+    	console.log(Attractions.findOne(markerId));
+    	return Attractions.findOne(markerId);
     }
 });
