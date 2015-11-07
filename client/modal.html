@@ -1,7 +1,14 @@
 <template name = "eventModal">
-	<h1>{{markerInfo.title}}</h1>
-	<p>${{markerInfo.price}}</p>
-<!-- 	<img src = "{{markerInfo.pictureUrl}}"></img> -->
+	<div class="header">{{markerInfo.title}}</div>
+	<div class="image content">
+	    <div class="ui medium image">
+	      <img src="{{markerInfo.pictureUrl}}">
+	    </div>
+	    <div class="description">
+	      <div class="ui header">MOOD HERE</div>
+	      <p>{{markerInfo.description}}</p>
+	    </div>
+	  </div>
 </template>
 
 <template name = "yourModal">
