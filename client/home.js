@@ -1,5 +1,17 @@
+Meteor.startup(function() {
+    GoogleMaps.load();
+});
+
 Template.home.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
+    	var latLng = Geolocation.latLng();
+
+    	var marker = new google.maps.Marker({
+		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
+		   	animation: google.maps.Animation.DROP,
+		   	map: map.instance
+		});
+
       	google.maps.event.addListener(map.instance, 'click', function(event) {
         	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
       	});
@@ -20,6 +32,12 @@ Template.home.onCreated(function() {
 	            	Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
 	          	});
 
+	          	marker.addListener('click', function(event) {
+					console.log("You have clicked on " + marker.id);
+					console.log(Markers.findOne(marker.id));
+					console.log("Zip code is: ");
+				});
+
           		markers[document._id] = marker;
         	},
         	changed: function (newDocument, oldDocument) {
@@ -34,16 +52,13 @@ Template.home.onCreated(function() {
     });
 });
 
-Meteor.startup(function() {
-    GoogleMaps.load();
-});
-
 Template.home.helpers({
     mapOptions: function() {
- 	    if (GoogleMaps.loaded()) {
+    	var latLng = Geolocation.latLng();
+ 	    if (GoogleMaps.loaded() && latLng) {
 	        return {
-	          center: new google.maps.LatLng(-37.8136, 144.9631),
-	          zoom: 8
+        		center: new google.maps.LatLng(latLng.lat, latLng.lng),
+	          	zoom: 13
 	        };
 	    }
     }
