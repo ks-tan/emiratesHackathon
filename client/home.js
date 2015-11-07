@@ -12,6 +12,10 @@ Template.home.onCreated(function() {
 		   	map: map.instance
 		});
 
+		marker.addListener('click', function(event){
+			$("#yourMarker").modal("show");
+		});
+
       	google.maps.event.addListener(map.instance, 'click', function(event) {
         	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
       	});
@@ -32,10 +36,10 @@ Template.home.onCreated(function() {
 	            	Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
 	          	});
 
+	          	//click event marker
 	          	marker.addListener('click', function(event) {
-					console.log("You have clicked on " + marker.id);
-					console.log(Markers.findOne(marker.id));
-					console.log("Zip code is: ");
+					Session.set('markerId', marker.id);
+					$("#eventMarker").modal("show");
 				});
 
           		markers[document._id] = marker;
