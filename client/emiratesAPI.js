@@ -1,6 +1,10 @@
 Template.page2.events({
 	"input #testTextField": function (event) {
-    console.log(event.target.value);
+    onInputChange(event.target.value);
   }
 });
+
+function onInputChange(inputVal) {
+	console.log(inputVal);
+}
 
