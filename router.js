@@ -21,3 +21,7 @@ Router.route('page2',{
 Router.route('page3',{
 	template: 'page3'
 });
+
+Router.route('populateXola', {
+	template: 'populateXola'
+});
