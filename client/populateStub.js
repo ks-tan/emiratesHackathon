@@ -1,6 +1,6 @@
 
-Template.populateXola.helpers({
-	populateStubHubCollections: function() {
+Template.populateStub.helpers({
+	populateCollections: function() {
 		getStubHubData()
 	}
 });
