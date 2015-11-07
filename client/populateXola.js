@@ -30,9 +30,9 @@ getXolaExperiences = function(url){
 			}
 			Attractions.insert({
 				_id: experience.id,
-				title: experience.name,
-				description: experience.description,
-				location: experience.geo.lat + ", " + experience.geo.lng,
+				title: name,
+				description: description,
+				location: location.lat + ", " + location.lng,
 				price: experience.price,
 				pictureUrl: photoUrl
 			});
