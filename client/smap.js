@@ -13,6 +13,8 @@ Template.smap.helpers({
 			json.date = currEvent.date;
 			json.title = currEvent.title;
 			json.location = currItem.state;
+			json.lat = currEvent.latitude;
+			json.lng = currEvent.longitude;
 			arr.push(json);	
 		}
 		arr.sort(function(a,b){
@@ -46,6 +48,8 @@ Template.smap.helpers({
 				var data = arr[j];
 				var acti_json = {};
 				if (data.location == loc) {
+					json.lat = data.lat;
+					json.lng = data.lng;
 					acti_json.title = data.title;
 					acti_json.w_id = data.w_id;
 					acti_json.a_id = data.a_id;
@@ -107,7 +111,10 @@ Template.smap.helpers({
 			}
 		}
 		console.log(newArr);
-		return newArr
+		Session.set("originLat", 37.627284);
+		Session.set("originLng", -122.452);
+
+		return newArr;
 	},
 	isXola: function(source) {
 		return source == "Xola"
@@ -115,6 +122,30 @@ Template.smap.helpers({
 
 	isStubHub: function(source) {
 		return source == "StubHub"
+	},
+	searchFlights: function(destLat, destLng) {
+		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
+		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
+
+		var originLat = Session.get("originLat");
+		var originLng = Session.get("originLng");
+        var input = {
+        	"origin": ""+originLat+","+originLng,
+        	"destination": ""+destLat+","+destLng,
+        	"outboundDate": ""+dateDepart,
+        	"inboundDate": ""+dateReturn
+        };
+        input = validateInput(input);
+        console.log(input);
+      	queryFlightAvailability(input);
+
+      	Session.set("originLat", destLat);
+      	Session.set("originLng", destLng);
+
+      	return Session.get("flightSearchResults");
+	},
+	isResultsAvailable: function() {
+		return Object.keys(Session.get("flightSearchResults")).length != 0;
 	}
 })
 

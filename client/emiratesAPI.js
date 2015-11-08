@@ -109,7 +109,7 @@ RETURN: an object of necessary data. The properties are:
 
 ***/
 
-function queryFlightAvailability(input) {
+queryFlightAvailability = function (input) {
 	input = validateInput(input);
 	Meteor.call("queryFlightAvailability", input, function(error, result){
 		if (error) {
@@ -190,7 +190,7 @@ function placeNameLookup(placeId, placeArray) {
 	return {};
 }
 
-function validateInput(input) {
+validateInput = function (input) {
 	// if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
 	// 	input.origin = "37.678,-122.452"; // sf latlong lol
 	// }
@@ -209,7 +209,7 @@ function validateLatLng(input) {
 	} 
 }
 
-function formatDate(date) {
+formatDate = function (date) {
 	var dd = date.getDate();
 	var mm = date.getMonth()+1; //January is 0!
 	var yyyy = date.getFullYear();

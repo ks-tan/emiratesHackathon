@@ -26,22 +26,22 @@
 
 <template name = "yourModal">
 	<h1 align='center'> How do you feel now? </h1>
-	<div style="width: 100%; display: table;">
+	<div style="width: 100%; display: table; margin-left: 10px">
 	    <div style="display: table-row">
 				<div style="display: table-cell; padding: 10px">
-					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Fun</button><br><br><br>
-					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
-					<h1><i class='child icon' style='font-size:200px; color:red; margin-left: -5px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
+					<div class = 'chooseYourMood' value = {{this}} style="margin: auto; display:inline-block;"><img src="images/funFlat.png" style="margin-left: 23px" width="70%"><br><br><div align='center' style="margin-left:-22px;font-size:24px">Fun</div></div><br><br><br>
+					
+					<!-- <h1><i class='child icon' style='font-size:200px; color:yellow; margin-left: -5px; margin-top: 40px; margin-bottom: -50px;'></i></h1> -->
 				</div>
 				<div style="display: table-cell; padding: 10px">
-					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Romance</button><br><br><br>
-					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
-					<h1><i class='heart icon' style='font-size:188px; color:violet; margin-left: 4px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
+					<div class = 'chooseYourMood' value = {{this}} style="margin: auto; display:inline-block;"><img src="images/romanceFlat.png" style="margin-left: 27px" width="70%"><br><br><div align='center' style="margin-left:-22px;font-size:24px">Romantic</div></div><br><br><br>
+					
+					<!-- <h1><i class='heart icon' style='font-size:188px; color:red; margin-left: 4px; margin-top: 40px; margin-bottom: -50px;'></i></h1> -->
 				</div>
 				<div style="display: table-cell; padding: 10px">
-					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Adventurous</button><br><br><br>
-					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
-					<h1><i class='send icon' style='font-size:170px; color:yellow; margin-left: 15px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
+					<div class = 'chooseYourMood' value = {{this}} style="margin: auto; display:inline-block;"><img src="images/adventureFlat.png" style="margin-left:28px" width="70%"><br><br><div align='center' style="margin-left:-22px;font-size:24px">Adventurous</div></div><br><br><br>
+					
+					<!-- <h1><i class='send icon' style='font-size:170px; color:blue; margin-left: 15px; margin-top: 40px; margin-bottom: -50px;'></i></h1> -->
 				</div>
 	    </div>
 	</div>
@@ -54,12 +54,12 @@
 	<div class = "ui three column grid container">
 		{{#each eventList}}
 		<div class = "fluid column">
-			<div class = "ui card">
+			<div class = "ui card" id = "listModalCard">
 				<div class = "ui large image">
 					{{#if pictureUrl }}
-					<img src = "{{pictureUrl}}" >
+					<img src = "{{pictureUrl}}" id="listModalImg">
 					{{else}}
-					<img src = 'images/placeholder.png' >
+					<img src = 'images/placeholder.png' id="listModalImg">
 					{{/if}}					
 				</div>
 				<div class = "content">
