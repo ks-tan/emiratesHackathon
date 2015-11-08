@@ -5,7 +5,10 @@ Template.layout.onRendered(function(){
 })
 
 Template.layout.events({
-	'click #sidebarButton': function() {
+	'click #smap': function() {
 		$('.ui.sidebar').sidebar('toggle');
+	},
+	'click #smap': function() {
+		$("#smapModal").modal("show");
 	}
 })
