@@ -1,4 +1,4 @@
-Template.page2.events({
+Template.flights.events({
 	"input #testTextField": function (event) {
     onInputChange(event.target.value);
   }

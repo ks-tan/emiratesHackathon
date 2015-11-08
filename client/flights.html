@@ -1,14 +1,14 @@
-<template name = "page2">
-	<div style="padding-right:20px; padding-left:20px"> 
-		<h2>Estimated fares</h2> 
-		<a class="ui label">
+<template name = "flights">
+	<div style="padding-right:20px; padding-left:50px"> 
+		<span class="ui teal ribbon label"><h3>Estimated fares</h3></span>
+		<!-- <a class="ui label">
 			Economy
 			<i class="delete icon"></i>
 		</a>
 		<a class="ui label">
 			Business
 			<i class="delete icon"></i>
-		</a>
+		</a> -->
 	</div>
 	{{#each result}}
 	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
@@ -53,8 +53,7 @@
 					</table>
 
 					<div class="extra">
-						<div class="ui label">Economy</div>
-						<div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+						<div class="ui label"><i class="globe icon"></i>Domestic</div>
 						<div class="ui right floated labeled button">
 							<span class="ui basic label">
 						    Estimated Fare: $1709

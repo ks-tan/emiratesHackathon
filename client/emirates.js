@@ -1,4 +1,4 @@
-Template.page2.helpers({
+Template.flights.helpers({
 	generate: function () {
 		//call the skyscanner api
 	},
@@ -35,6 +35,6 @@ Template.page2.helpers({
 	}
 });
 
-Template.page2.events({
+Template.flights.events({
 
 });
