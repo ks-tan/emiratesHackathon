@@ -27,11 +27,18 @@ Template.home.onCreated(function() {
         		var location = document.location;
         		var lat = location.substring(0, location.indexOf(", "));
         		var lng = location.substring(location.indexOf(" "));
+        		var image = {
+				    url: 'images/happy.png',
+				    scaledSize: new google.maps.Size(50, 50),
+				    origin: new google.maps.Point(0, 0),
+				};
           		var marker = new google.maps.Marker({
             		//draggable: true,
             		//animation: google.maps.Animation.DROP,
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
+            		icon: image,
+            		opacity: 0.05,
             		id: document._id
           		});
 
@@ -65,7 +72,7 @@ Template.home.helpers({
  	    if (GoogleMaps.loaded() && latLng) {
 	        return {
         		center: new google.maps.LatLng(latLng.lat, latLng.lng),
-	          	zoom: 13
+	          	zoom: 4
 	        };
 	    }
     }
