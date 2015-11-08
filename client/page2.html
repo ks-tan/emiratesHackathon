@@ -1,3 +1,55 @@
 <template name = "page2">
-	<h1>PAGE 2 EMIRATES</h1>
+	<a class="ui label">
+		Economy
+		<i class="delete icon"></i>
+	</a>
+	<a class="ui label">
+		Business
+		<i class="delete icon"></i>
+	</a>
+	{{#each result}}
+	<div class="ui divided items">
+	  <div class="item">
+			<div class="content">
+				<span class="header">Origin to Destination</span>
+				<p></p>
+				<span class="header">Singapore Airlines {{FlightNo}}</span>
+				<div class="meta">
+					<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
+				</div>
+				<div class="meta">
+					<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
+				</div>
+				<div class="description"> Departing Flight
+				<br><br>
+				</div>
+
+				<span class="header">Destination to Origin</span>
+				<p></p>
+				<span class="header">Singapore Airlines {{FlightNo}}</span>
+				<div class="meta">
+					<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
+				</div>
+				<div class="meta">
+					<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
+				</div>
+				<div class="description"> Return Flight
+				<p></p>
+				</div>
+
+			<div class="extra">
+			<div class="ui right floated primary button">
+			Buy tickets
+			<i class="right chevron icon"></i>
+			</div>
+			<div class="ui label">Cabin Class</div>
+			<div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	{{/each}}
+
+	{{generate}}
+
 </template>
