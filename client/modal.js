@@ -9,6 +9,14 @@ Template.eventModal.helpers({
     }
 });
 
+Template.listModal.helpers({
+    eventList: function() {
+        var lat = Session.get("lat");
+        var lng = Session.get("lng");
+        return lat + ", " + lng;
+    }
+});
+
 (function() {
         var co=document.createElement("script");
         co.type="text/javascript";
