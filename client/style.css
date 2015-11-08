@@ -72,3 +72,12 @@ body.pushable > .pusher{
 #listModalCard {
 	height: 325px;
 }
+
+#smapModel {
+	background-color: black;
+}
+
+#itiLogo {
+	height: 50px;
+	width: auto;
+}
