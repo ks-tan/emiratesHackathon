@@ -170,18 +170,15 @@ function placeNameLookup(placeId, placeArray) {
 }
 
 function validateInput(input) {
-	if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
-		input.origin = "37.678,-122.452"; // sf latlong lol
-	}
-	if (input.destination == undefined || input.destination == null || isNaN(input.destination)) {
-		input.destination = "anywhere";
-	}
+	// if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
+	// 	input.origin = "37.678,-122.452"; // sf latlong lol
+	// }
 	if (input.outboundDate == undefined || input.outboundDate == null) {
 		input.outboundDate = "anytime";
 	}
-	if (input.inboundDate == undefined || input.inboundDate == null) {
-		input.inboundDate = "anytime";
-	}
+	// if (input.inboundDate == undefined || input.inboundDate == null) {
+	// 	input.inboundDate = "anytime";
+	// }
 	return input;
 }
 
@@ -204,20 +201,22 @@ function formatDate(date) {
 	    mm='0'+mm
 	}
 
-	return yyyy+'-'+mm+'-'+dd; 
+	return yyyy+'-'+mm;//+'-'+dd; 
 }
 
 Template.flights.helpers({
 	search: function() {
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
-		var currLat = validateLatLng(Number(Session.get('my_lat')));
-        var currLng = validateLatLng(Number(Session.get('my_lng')));
-        var eventLat = validateLatLng(Number(Session.get('lat')));
- 		var eventLng = validateLatLng(Number(Session.get('lng')));
+		//dateReturn = "anytime";
+		var currLat = (Number(Session.get('my_lat')));
+        var currLng = (Number(Session.get('my_lng')));
 
- 		console.log(eventLng);
- 		console.log(eventLat);
+    	var markerId = Session.get('markerId');
+    	var attraction = Attractions.findOne(markerId);
+        var eventLat = (Number(attraction.latitude));
+ 		var eventLng = (Number(attraction.longitude));
+
         var input = {
         	"origin": ""+currLat+","+currLng,
         	"destination": ""+eventLat+","+eventLng,
