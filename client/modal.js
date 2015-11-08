@@ -24,6 +24,12 @@ Template.listModal.helpers({
     }
 });
 
+Template.listModal.events({
+    'click #smapButton': function() {
+        Session.set('markerId', this._id);
+        $("#eventMarker").modal("show");
+    }
+});
 
 Template.eventModal.onRendered({ 
 	function() {
