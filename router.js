@@ -10,8 +10,8 @@ Router.route('home',{
 	template: 'home'
 });
 
-Router.route('page1',{
-	template: 'page1'
+Router.route('smap',{
+	template: 'smap'
 });
 
 Router.route('page2',{

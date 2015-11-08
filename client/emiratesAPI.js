@@ -99,7 +99,7 @@ function placeNameLookup(placeId, placeArray) {
 
 function validateInput(input) {
 	if (input.origin == undefined || input.origin == null) {
-		input.origin = "50,0";
+		input.origin = "37.678,-122.452"; // sf latlong lol
 	}
 	if (input.destination == undefined || input.destination == null) {
 		input.destination = "anywhere";
