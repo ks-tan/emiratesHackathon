@@ -16,6 +16,7 @@ Meteor.methods({
 		var outboundDate = input.outboundDate;
 		var inboundDate = input.inboundDate;
 		url = url +"/"+ origin +"/"+ destination +"/"+ outboundDate +"/"+ inboundDate + "?apikey=" + APIKey;
+		console.log(url);
 		return HTTP.get(url);
 	},
 	createLiveFlightSession: function(input) {
