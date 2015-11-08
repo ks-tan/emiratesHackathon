@@ -17,25 +17,33 @@ Meteor.methods({
 		var inboundDate = input.inboundDate;
 		url = url +"/"+ origin +"/"+ destination +"/"+ outboundDate +"/"+ inboundDate + "?apikey=" + APIKey;
 		return HTTP.get(url);
+	},
+	createLiveFlightSession: function(input) {
+		var APIKey = "ah784286533249542154336639656685";
+		var url = "http://api.skyscanner.net/apiservices/pricing/v1.0/?apikey=" + APIKey;
+		var urlQuery = "country=US&currency=USD&locale=en-US&locationSchema=iata&grouppricing=true";
+		var origin = "&originplace=" + input.origin;
+		var destination = "&destinationplace=" + input.destination;
+		var outboundDate = "&outbounddate=" + input.outboundDate;
+		var inboundDate = "&inbounddate=" + input.inboundDate;
+		var adults = "&adults=" + input.noOfAdults; // 1-8
+		var children = "&children=" + input.noOfChildren; // 0-8
+		var infants = "&infants=" + input.noOfInfants; // 0- no of adults
+		var cabinClass = "&cabinclass=" + input.cabinClass; // ["Economy", "PremiumEconomy", "Business", "First"]
+		urlQuery = url + origin + destination + outboundDate + inboundDate + adults + children + infants + cabinClass;
+
+		HTTP.get(url, {
+			Headers: {
+				"Host": "api.skyscanner.net"
+				"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+			}
+		}, function(error,success) {
+			if (error) {
+				console.log(error);
+			} else {
+				console.log(result);
+			}
+		});
+
 	}
 });
-
-function carrierNameLookup(carrierId, carrierArray) {
-	for (var i = carrierArray.length - 1; i >= 0; i--) {
-		var carrier = carrierArray[i];
-		if (carrierId == carrier.CarrierId) {
-			return carrier.Name;
-		}
-	};
-	return "unknown carrier";
-}
-
-function placeNameLookup(placeId, placeArray) {
-	for (var i = placeArray.length - 1; i >= 0; i--) {
-		var place = placeArray[i];
-		if (placeId == place.PlaceId) {
-			return place;
-		};
-	};
-	return {};
-}
