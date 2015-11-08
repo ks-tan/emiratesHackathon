@@ -44,6 +44,8 @@ Template.listModal.helpers({
     eventList: function() {
         var lat = Number(Session.get("lat"));
         var lng = Number(Session.get("lng"));
+        console.log(lat);
+        console.log(lng);
         return Attractions.find({
             latitude: {
                 $gt: lat-0.5, $lt: lat+0.5

@@ -21,7 +21,7 @@ Template.home.onCreated(function() {
 		  });
 
       var marker1 = new google.maps.Marker({
-        position: new google.maps.LatLng(45.97712, -97.910156),
+        position: new google.maps.LatLng(43.544596, -96.731103),
         animation: google.maps.Animation.DROP,
         map: map.instance,
         zIndex: 1000
@@ -32,12 +32,13 @@ Template.home.onCreated(function() {
           "<h1>Dakota</h1>" + 
           "<p><i class='child icon'></i>Fun: 30%</p>" + 
           "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<p><i class='send icon'></i>Adventure: 60%</p>"  
+          "<p><i class='send icon'></i>Adventure: 60%</p>" +
+          "<button class='ui secondary button' onclick='showListModal(43.544596, -96.731103)'>Show Events</button>"
       });
       infowindow1.open(map,marker1);
 
       var marker2 = new google.maps.Marker({
-        position: new google.maps.LatLng(30, -96),
+        position: new google.maps.LatLng(30.267153, -97.743061),
         animation: google.maps.Animation.DROP,
         map: map.instance,
         zIndex: 1000
@@ -48,12 +49,13 @@ Template.home.onCreated(function() {
           "<h1>Texas</h1>" + 
           "<p><i class='child icon'></i>Fun: 20%</p>" + 
           "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<p><i class='send icon'></i>Adventure: 70%</p>"  
+          "<p><i class='send icon'></i>Adventure: 70%</p>" +
+          "<button class='ui secondary button' onclick='showListModal(30.267153, -97.743061)'>Show Events</button>"
       });
       infowindow2.open(map,marker2);
 
       var marker3 = new google.maps.Marker({
-        position: new google.maps.LatLng(39.97712, -75.910156),
+        position: new google.maps.LatLng(38.907192, -77.036871),
         animation: google.maps.Animation.DROP,
         map: map.instance,
         zIndex: 1000
@@ -64,12 +66,13 @@ Template.home.onCreated(function() {
           "<h1>New York</h1>" + 
           "<p><i class='child icon'></i>Fun: 50%</p>" + 
           "<p><i class='heart icon'></i>Romantic: 40%</p>" +
-          "<p><i class='send icon'></i>Adventure: 10%</p>"  
+          "<p><i class='send icon'></i>Adventure: 10%</p>"  +
+          "<button class='ui secondary button' onclick='showListModal(38.907192, -77.036871)'>Show Events</button>"
       });
       infowindow3.open(map,marker3);
 
       var marker4 = new google.maps.Marker({
-        position: new google.maps.LatLng(39.97712, -120.910156),
+        position: new google.maps.LatLng(37.774929, -122.419416),
         animation: google.maps.Animation.DROP,
         map: map.instance,
         zIndex: 1000
@@ -80,7 +83,8 @@ Template.home.onCreated(function() {
           "<h1>San Francisco</h1>" + 
           "<p><i class='child icon'></i>Fun: 30%</p>" + 
           "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
-          "<p><i class='send icon'></i>Adventure: 10%</p>"  
+          "<p><i class='send icon'></i>Adventure: 10%</p>"   +
+          "<button class='ui secondary button' onclick='showListModal(37.774929, -122.419416)'>Show Events</button>"
       });
       infowindow4.open(map,marker4);
 
@@ -88,9 +92,10 @@ Template.home.onCreated(function() {
       $("#yourMarker").modal("show");
     });
 
-      	google.maps.event.addListener(map.instance, 'click', function(event) {
-      		showListModal(event);
-      	});
+
+      	// google.maps.event.addListener(map.instance, 'click', function(event) {
+      	// 	showListModal(event);
+      	// });
 
         map.instance.setOptions({ minZoom: 4, maxZoom: 15 });
 
@@ -160,9 +165,9 @@ Template.home.helpers({
     }
 });
 
-function showListModal(event){
-	var lat = event.latLng.lat();
-    var lng = event.latLng.lng();
+showListModal = function(lat, lng){
+    console.log(lat);
+    console.log(lng);
     Session.set("lat", lat);
     Session.set("lng", lng);
     $("#listModal").modal("show");
