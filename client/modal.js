@@ -17,3 +17,10 @@ Template.eventModal.helpers({
         var s=document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(co, s);
     })();
+
+Template.yourModal.helpers({
+    moods: function() {
+        moodsList = ['Happy', 'Romance', 'Adventurous', 'Calm'];
+        return moodsList
+    }
+})
