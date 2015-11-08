@@ -11,8 +11,9 @@ Template.home.onCreated(function() {
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
 		   	animation: google.maps.Animation.DROP,
-		   	map: map.instance
-		});
+		   	map: map.instance,
+        zIndex: 1000
+		  });
 
     $(".yourMood").on('click', function(event){
       $("#yourMarker").modal("show");
@@ -36,7 +37,7 @@ Template.home.onCreated(function() {
         		var lng = document.longitude;
             var mood = document.mood;
         		var image = {
-  				    url: 'images/happy.png',
+  				    url: 'images/'+mood+'.png',
   				    scaledSize: new google.maps.Size(100, 100),
   				    origin: new google.maps.Point(0, 0),
 				    };
@@ -48,7 +49,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.05,
+            		opacity: 0.08,
             		id: document._id
           		});
 

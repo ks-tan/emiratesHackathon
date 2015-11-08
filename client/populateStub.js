@@ -25,11 +25,11 @@ getStubHubData= function(){
                 var randomNum = Math.floor((Math.random() * 3) + 1);
                 var mood;
                 if (randomNum == 1){
-                    mood = "happy";
+                    mood = "fun";
                 } else if (randomNum == 2){
-                    mood = "love";
+                    mood = "romantic";
                 } else if (randomNum == 3){
-                    mood = "nature";
+                    mood = "adventure";
                 }
 
                 var id = String(eventData.id);
