@@ -136,7 +136,7 @@ Template.smap.helpers({
         	"inboundDate": ""+dateReturn
         };
         input = validateInput(input);
-        console.log(input);
+        // console.log(input);
       	queryFlightAvailability(input);
 
       	Session.set("originLat", destLat);
