@@ -73,23 +73,49 @@ Template.yourModal.helpers({
 
 Template.yourModal.events({
     'click .chooseYourMood': function(event) {
-        var mood = event.target.value;
+        var mood = "you"
         var lat = Number(Session.get('my_lat'));
         var lng = Number(Session.get('my_lng'));
-        Markers.insert({
-            latitude: lat,
-            longitude: lng,
-            mood: mood
-        });
+        //find markers around your area, and place you.png on top of them
+        var nearYou = getNearYou(lat, lng);
+        console.log(nearYou);
         $("#yourMarker").modal("hide");
-        var editText = $("#romanceValue").text();
-        var num = Number(editText.substring(editText.indexOf(" "),editText.indexOf("%"))) + 5;
-        $("#romanceValue").html("<i class='heart icon'></i>Romantic: " + num + "%");
-        var editText = $("#adventureValue").text();
-        var num = Number(editText.substring(editText.indexOf(" "),editText.indexOf("%"))) - 5;
-        $("#adventureValue").html("<i class='send icon'></i>Adventure: " + num + "%");
+        nearYou.forEach(function (marker) {
+          console.log(marker.latitude + ", " + marker.longitude);
+          //insert markers
+          map = globalMap;
+
+          var image = {
+            url: 'images/'+mood+'.png',
+            scaledSize: new google.maps.Size(40, 40),
+            origin: new google.maps.Point(0, 0),
+          };
+
+          var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(marker.latitude ,marker.longitude),
+                map: map.instance,
+                icon: image,
+                opacity: 0.01,
+                zIndex: 500,
+                id: document._id
+          });
+        });
+
+        marker.addListener('click', function(event) {
+           showListModal(event);
+         });
     }
 })
 
+function getNearYou(lat,lng){
+    return Attractions.find({
+        latitude: {
+            $gt: lat-5.0, $lt: lat+5.0
+        },
+        longitude: {
+            $gt: lng-5.0, $lt: lng+5.0
+        }
+    });
+}
 
 

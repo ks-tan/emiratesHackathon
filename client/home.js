@@ -4,6 +4,7 @@ Meteor.startup(function() {
 
 Template.home.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
+      globalMap = map;
     	var latLng = Geolocation.latLng();
       Session.set('my_lat', latLng.lat);
       Session.set('my_lng', latLng.lng);
