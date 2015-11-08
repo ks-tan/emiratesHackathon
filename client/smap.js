@@ -15,7 +15,6 @@ Template.smap.helpers({
 			json.location = currItem.state;
 			arr.push(json);	
 		}
-		console.log(arr);
 		arr.sort(function(a,b){
 			if (typeof a.date === "undefined" && typeof b.date === "undefined") {
 				return 0
@@ -86,7 +85,6 @@ Template.smap.helpers({
 			});
 			latestLocDate.push(tmp_acti[0].date)
 		}
-		console.log(latestLocDate)
 
 		for (i = 0; i < newArr.length - 1; i++) {
 			data = newArr[i+1];
@@ -110,5 +108,19 @@ Template.smap.helpers({
 		}
 		console.log(newArr);
 		return newArr
+	},
+	isXola: function(source) {
+		return source == "Xola"
+	},
+
+	isStubHub: function(source) {
+		return source == "StubHub"
+	}
+})
+
+Template.smap.events({
+	'click .deleteButton': function(event){
+        var id = event.target.value;
+        Watchlist.remove(id);
 	}
 })
