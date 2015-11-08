@@ -106,11 +106,19 @@ function queryFlightAvailability(input) {
 			var resultQuotes = [];
 			for (var i = result.data.Quotes.length - 1; i >= 0; i--) {
 				var quote = result.data.Quotes[i];
-				var outboundLeg = quote.OutboundLeg;
-				var outboundCarrier = carrierNameLookup(outboundLeg.CarrierIds[0], result.data.Carriers);
-				var outboundOrigin = placeNameLookup(outboundLeg.OriginId, result.data.Places);
-				var outboundDestination = placeNameLookup(outboundLeg.DestinationId, result.data.Places);
-				var outboundDate = outboundLeg.DepartureDate;
+				if (quote.OutboundLeg != undefined) {
+					var outboundLeg = quote.OutboundLeg;
+					var outboundCarrier = carrierNameLookup(outboundLeg.CarrierIds[0], result.data.Carriers);
+					var outboundOrigin = placeNameLookup(outboundLeg.OriginId, result.data.Places);
+					var outboundDestination = placeNameLookup(outboundLeg.DestinationId, result.data.Places);
+					var outboundDate = outboundLeg.DepartureDate;
+				} else {
+					var outboundCarrier = "unknown carrier";
+					var outboundOrigin = "";
+					var outboundDestination = "";
+					var outboundDate = "";
+				}
+				
 
 				if (quote.InboundLeg != undefined) {
 					var isRoundTrip = true;
@@ -210,7 +218,8 @@ Template.flights.helpers({
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
 		//dateReturn = "anytime";
-		var currLat = (Number(Session.get('my_lat')));
+		// var currLat = (Number(Session.get('my_lat')));
+		var currLat = 37.627284;
         var currLng = (Number(Session.get('my_lng')));
 
     	var markerId = Session.get('markerId');
