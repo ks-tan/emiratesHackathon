@@ -30,7 +30,7 @@ body.pushable > .pusher{
 }
 
 #outerCard {
-	background-color: #195D91;
+	background-color: #234C9D;
 	width: 80%;
 	margin: auto;
 	color: white;
@@ -43,4 +43,8 @@ body.pushable > .pusher{
 	margin: auto;
 	color: black;
 	font-size: 15px;
+}
+
+#warningSign {
+	maring-right: 20px;
 }
