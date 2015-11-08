@@ -1,55 +1,77 @@
 <template name = "page2">
-	<a class="ui label">
-		Economy
-		<i class="delete icon"></i>
-	</a>
-	<a class="ui label">
-		Business
-		<i class="delete icon"></i>
-	</a>
-	{{#each result}}
-	<div class="ui divided items">
-	  <div class="item">
-			<div class="content">
-				<span class="header">Origin to Destination</span>
-				<p></p>
-				<span class="header">Singapore Airlines {{FlightNo}}</span>
-				<div class="meta">
-					<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
-				</div>
-				<div class="meta">
-					<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
-				</div>
-				<div class="description"> Departing Flight
-				<br><br>
-				</div>
-
-				<span class="header">Destination to Origin</span>
-				<p></p>
-				<span class="header">Singapore Airlines {{FlightNo}}</span>
-				<div class="meta">
-					<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
-				</div>
-				<div class="meta">
-					<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
-				</div>
-				<div class="description"> Return Flight
-				<p></p>
-				</div>
-
-			<div class="extra">
-			<div class="ui right floated primary button">
-			Buy tickets
-			<i class="right chevron icon"></i>
-			</div>
-			<div class="ui label">Cabin Class</div>
-			<div class="ui label"><i class="globe icon"></i> Additional Languages</div>
-	      </div>
-	    </div>
-	  </div>
+	<div style="padding-right:20px; padding-left:20px"> 
+		<h2>Estimated fares</h2> 
+		<a class="ui label">
+			Economy
+			<i class="delete icon"></i>
+		</a>
+		<a class="ui label">
+			Business
+			<i class="delete icon"></i>
+		</a>
 	</div>
-	{{/each}}
+	{{#each result}}
+	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
+		<div class="item">
+			<div class="content">
 
-	{{generate}}
+				<table class="ui celled table">
+					<thead>
+						<tr><th>Departing Flight</th>
+							<th>Return Flight</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img class="ui avatar image" src="../public/images/flight.png">
+									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
+									<span class="header">Origin to Destination</span>
+									<div class="meta">
+										<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
+									</div>
+									<div class="meta">
+										<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
+									</div>
+									<div class="description"> Lorem
+									</div>
+								</td>
+								<td>
+									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
+									<span class="header">Destination to Origin</span>
+									<div class="meta">
+										<span class="backDepartDateTime">Depart: {{FlightDateTime}}</span>
+									</div>
+									<div class="meta">
+										<span class="backArriveDateTime">Arrival: {{FlightDateTime}}</span>
+									</div>
+									<div class="description"> Ipsum
+									</div>
+								</td>
+							</tr>
+						</tbody>
 
-</template>
+					</table>
+
+					<div class="extra">
+						<div class="ui label">Economy</div>
+						<div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+						<div class="ui right floated labeled button">
+							<span class="ui basic label">
+						    Estimated Fare: $1709
+						  	</span>
+							<div class="ui primary button">
+						  	Buy tickets
+						    <i class="right chevron icon"></i> 
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui divider"></div>
+		{{/each}}
+
+		{{generate}}
+
+	</template>
