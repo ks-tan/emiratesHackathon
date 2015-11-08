@@ -59,7 +59,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.8,
+            		opacity: 0.08,
             		id: document._id
           		});
 
