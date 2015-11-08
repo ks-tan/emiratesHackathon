@@ -19,7 +19,7 @@ Router.route('page2',{
 });
 
 Router.route('page3',{
-	template: 'page3'
+	template: 'flightsDetail'
 });
 
 Router.route('populateXola', {

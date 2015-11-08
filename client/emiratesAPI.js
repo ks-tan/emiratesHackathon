@@ -6,6 +6,7 @@ Template.flights.events({
  	"click .button .primary": function (event) {
  		var input = {};
  		createLiveFlightSession(input);
+ 		Router.go("page3");
  	}
 });
 
@@ -208,9 +209,8 @@ Template.flights.helpers({
 	search: function() {
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
-		//dateReturn = "anytime";
-		var currLat = (Number(Session.get('my_lat')));
-        var currLng = (Number(Session.get('my_lng')));
+		var currLat = 37.62784;//(Number(Session.get('my_lat')));
+        var currLng = -122.454;//(Number(Session.get('my_lng')));
 
     	var markerId = Session.get('markerId');
     	var attraction = Attractions.findOne(markerId);
@@ -229,3 +229,40 @@ Template.flights.helpers({
       	return Session.get("flightSearchResults");
 	}
 });
+
+
+Template.flightsDetail.events({
+	"click .delete.icon": function (event) {
+		event.preventDefault();
+ 		console.log("Delete");
+ 	}
+});
+
+Template.flightsDetail.helpers({
+	search: function() {
+		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
+		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
+		var currLat = 37.62784;//(Number(Session.get('my_lat')));
+        var currLng = -122.454;//(Number(Session.get('my_lng')));
+
+    	var markerId = Session.get('markerId');
+    	var attraction = Attractions.findOne(markerId);
+        var eventLat = 40.747;//(Number(attraction.latitude));
+ 		var eventLng = -74.080;//(Number(attraction.longitude));
+
+        var input = {
+        	"origin": ""+currLat+","+currLng,
+        	"destination": ""+eventLat+","+eventLng,
+        	"outboundDate": ""+dateDepart,
+        	"inboundDate": ""+dateReturn
+        };
+        input = validateInput(input);
+        console.log(input); 
+      	queryFlightAvailability(input);
+      	return Session.get("flightSearchResults");
+	}
+});
+
+
+
+
