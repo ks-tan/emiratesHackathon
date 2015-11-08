@@ -5,14 +5,14 @@
 	      <img src="{{markerInfo.pictureUrl}}">
 	    </div>
 	    <div class="description">
-	      <div class="ui header">MOOD HERE</div>
-	      <p>{{markerInfo.description}}</p>
+	      	<div class="ui header">MOOD HERE</div>
+	      	<p>{{markerInfo.description}}</p>
+	      	{{#if isInWatchlist markerInfo._id}}
+		    <button class="ui black button" id="smappedButton" disabled>SMapped</button>
+		    {{else}}
+		    <button class="ui primary button" id="smapButton" value={{markerInfo._id}} >SMap it!</button>
+		    {{/if}}
 	    </div>
-	    {{#if isInWatchlist markerInfo._id}}
-	    <button disabled>SMapped</button>
-	    {{else}}
-	    <button id="smapButton" value={{markerInfo._id}} >SMap it!</button>
-	    {{/if}}
 	 </div> 
 	 {{>flights}}
 </template>
