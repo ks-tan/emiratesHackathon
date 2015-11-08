@@ -46,4 +46,12 @@
 			</div>
 		{{/each}}
 	</div>
+	<div id = "yourMarker" class = "ui modal">
+		{{> yourModal}}
+	</div>
+	<script type="text/javascript">
+		$(".yourMood").on('click', function(event){
+	      	$("#yourMarker").modal("show");
+	    });
+	</script>
 </template>

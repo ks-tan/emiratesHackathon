@@ -18,10 +18,17 @@
 </template>
 
 <template name = "yourModal">
-	<h1> Tell us what is your mood now! </h1>
-	{{#each moods}}
-		<button class = 'chooseYourMood' value = {{this}}>{{this}}</button><br>
-	{{/each}}
+	<h1 align='center'> How do you feel now? </h1>
+	<div style="width: 100%; display: table;">
+	    <div style="display: table-row">
+	    	{{#each moods}}
+				<div style="display: table-cell; padding: 10px">
+					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin-left: auto; margin-right: auto">{{this}}</button><br>
+					<img src="images/Happy_Dog.jpg" width="100%" height="20%">
+				</div>
+			{{/each}}
+	    </div>
+	</div>
 </template>
 
 <template name = "listModal">

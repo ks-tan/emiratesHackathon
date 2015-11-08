@@ -21,17 +21,6 @@ getStubHubData= function(){
                 	continue
                 }
 
-                //randomise emotions
-                var randomNum = Math.floor((Math.random() * 3) + 1);
-                var mood;
-                if (randomNum == 1){
-                    mood = "happy";
-                } else if (randomNum == 2){
-                    mood = "love";
-                } else if (randomNum == 3){
-                    mood = "nature";
-                }
-
                 var id = String(eventData.id);
                 var name = eventData.name;
                 var desc = eventData.description;
@@ -60,8 +49,7 @@ getStubHubData= function(){
                     price: ticketPrice,
                     pictureUrl: pictureUrl,
                     date: date,
-                    time: time,
-                    mood: mood
+                    time: time
                 });
             }
         }

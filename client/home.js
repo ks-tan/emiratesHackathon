@@ -7,19 +7,21 @@ Template.home.onCreated(function() {
     	var latLng = Geolocation.latLng();
       Session.set('my_lat', latLng.lat);
       Session.set('my_lng', latLng.lng);
-
+      var image = {
+        url: "images/bluepin.png",
+        scaledSize: new google.maps.Size(35,35),
+        origin: new google.maps.Point(0,0)
+      };
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
 		   	animation: google.maps.Animation.DROP,
-		   	map: map.instance
-		});
+		   	map: map.instance,
+        icon: image,
+        zIndex: 1000
+		  });
 
     $(".yourMood").on('click', function(event){
       $("#yourMarker").modal("show");
-    });
-
-    $("#openMenu").on('click', function(event){
-      $('.ui.sidebar').sidebar('toggle');
     });
 
       	google.maps.event.addListener(map.instance, 'click', function(event) {
@@ -32,12 +34,20 @@ Template.home.onCreated(function() {
 
       	Attractions.find().observe({
         	added: function (document) {
+            var randomNum = Math.floor((Math.random() * 3) + 1);
+            var mood;
+            if (randomNum == 1) {
+              mood = "fun";
+            } else if (randomNum == 2) {
+              mood = "romantic";
+            } else if (randomNum == 3){
+              mood = "adventure";
+            }
         		var lat = document.latitude;
         		var lng = document.longitude;
-            var mood = document.mood;
         		var image = {
-  				    url: 'images/happy.png',
-  				    scaledSize: new google.maps.Size(100, 100),
+  				    url: 'images/'+mood+'.png',
+  				    scaledSize: new google.maps.Size(65, 65),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
@@ -48,7 +58,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.05,
+            		opacity: 0.08,
             		id: document._id
           		});
 
