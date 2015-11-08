@@ -5,9 +5,20 @@ Template.flights.events({
  	},
  	"click .button .primary": function (event) {
  		var input = {};
- 		createLiveFlightSession(input);
+ 		// createLiveFlightSession(input);
+ 		testReverseGeocoding();
  	}
 });
+
+function testReverseGeocoding() {
+	Meteor.call("getLocation", 37.678, -122.452, function(error,result){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log(result);
+		}
+	});
+}
 
 // the function below is the API call to skyscanner's live pricing
 /***

@@ -100,6 +100,7 @@ Template.home.onCreated(function() {
         	added: function (document) {
             var randomNum = Math.floor((Math.random() * 3) + 1);
             var mood;
+            var image;
             if (randomNum == 1) {
               mood = "fun";
             } else if (randomNum == 2) {

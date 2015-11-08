@@ -19,7 +19,7 @@ Router.route('page2',{
 });
 
 Router.route('page3',{
-	template: 'page3'
+	template: 'flightsDetail'
 });
 
 Router.route('checkout',{
@@ -32,4 +32,8 @@ Router.route('populateXola', {
 
 Router.route('populateStub', {
 	template: 'populateStub'
+});
+
+Router.route('bookFlight', {
+	template: 'bookFlight'
 });

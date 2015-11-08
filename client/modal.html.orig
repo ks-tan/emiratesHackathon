@@ -5,6 +5,7 @@
 	      <img src="{{markerInfo.pictureUrl}}">
 	    </div>
 	    <div class="description">
+<<<<<<< HEAD
 	      	<div class="ui header">MOOD HERE</div>
 	      	<p>{{markerInfo.description}}</p>
 	      	{{#if isInWatchlist markerInfo._id}}
@@ -12,6 +13,10 @@
 		    {{else}}
 		    <button class="ui primary button" id="smapButton" value={{markerInfo._id}} >SMap it!</button>
 		    {{/if}}
+=======
+	      <div class="ui header">MOOD HERE</div>
+	      <p>{{markerInfo.description}}</p>    
+>>>>>>> 0e08f2d44254e76d349a81f184598409df3f9963
 	    </div>
 	 </div> 
 	 {{>flights}}
@@ -32,7 +37,6 @@
 </template>
 
 <template name = "listModal">
-	<div style="overflow-y:auto; overflow-x:hidden; height:600px;">
 	<h1>List of Events</h1>
 	<div class = "ui three column grid">
 		{{#each eventList}}
@@ -52,6 +56,5 @@
 			</div>
 		</div>
 		{{/each}}
-	</div>
 	</div>
 </template>

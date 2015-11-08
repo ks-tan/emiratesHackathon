@@ -1,19 +1,16 @@
 <template name = "flightsDetail">
-	
-	<div style="overflow-y:auto; height:400px;">
-
-		
-		<div style="padding-right:20px; padding-left:50px"> 
+	<div style="padding-right:200px; padding-left:200px"> 
 			<span class="ui teal ribbon label"><h3>Estimated fares</h3></span>
-		<!-- <a class="ui label">
+		<a class="ui label">
 			Economy
 			<i class="delete icon"></i>
 		</a>
 		<a class="ui label">
 			Business
-			<i class="delete icon"></i>
-		</a> -->
+			<i class="delete icon" onclick="deleteIcon"></i>
+		</a>
 	</div>
+	{{test}}
 	{{#each search}}
 	{{#unless isRoundTrip}}
 
@@ -128,5 +125,4 @@
 {{/unless}}
 <div class="ui divider"></div>
 {{/each}}
-</div>
 </template>
