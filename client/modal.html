@@ -1,19 +1,20 @@
 <template name = "eventModal">
+	
 	<div class="header">{{markerInfo.title}}</div>
 	<div class="image content">
-	    <div class="ui medium image">
+	    <div class="ui rounded large image">
 	      <img src="{{markerInfo.pictureUrl}}">
 	    </div>
-	    <div class="description">
-	      <div class="ui header">MOOD HERE</div>
+	    <div style="overflow-y:auto; height:200px; padding-right:20px; padding-left:20px" class="description" >
 	      <p>{{markerInfo.description}}</p>
 	    </div>
 	    {{#if isInWatchlist markerInfo._id}}
-	    <button disabled>SMapped</button>
+	    <div><button class = "ui right disabled green button">SMapped</button></div>
 	    {{else}}
-	    <button id="smapButton" value={{markerInfo._id}} >SMap it!</button>
+	    <div><button class="ui right green button" id="smapButton" value={{markerInfo._id}} >SMap it!</button></div>
 	    {{/if}}
 	 </div> 
+	 <div class="ui divider"></div>
 	 {{>flights}}
 </template>
 

@@ -210,15 +210,13 @@ function formatDate(date) {
 	    mm='0'+mm
 	}
 
-	return yyyy+'-'+mm;//+'-'+dd; 
+	return yyyy+'-'+mm;
 }
 
 Template.flights.helpers({
 	search: function() {
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
-		//dateReturn = "anytime";
-		// var currLat = (Number(Session.get('my_lat')));
 		var currLat = 37.627284;
         var currLng = (Number(Session.get('my_lng')));
 
@@ -234,8 +232,11 @@ Template.flights.helpers({
         	"inboundDate": ""+dateReturn
         };
         input = validateInput(input);
-        console.log(input); 
+        console.log(input);
       	queryFlightAvailability(input);
       	return Session.get("flightSearchResults");
+	},
+	isResultsAvailable: function() {
+		return Object.keys(Session.get("flightSearchResults")).length != 0;
 	}
 });
