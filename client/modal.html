@@ -8,11 +8,7 @@
 	      <div class="ui header">MOOD HERE</div>
 	      <p>{{markerInfo.description}}</p>
 	    </div>
-	    {{#if isXola markerInfo.source}}
-	    	<div class="xola-custom xola-checkout" id="4f2b1dcc536e864069000001">
-			    <button>Book Now</button>
-			</div>
-		{{/if}}
+	    <button class="smapButton" value={{markerInfo._id}}>SMap it!</button>
 	 </div>
 </template>
 

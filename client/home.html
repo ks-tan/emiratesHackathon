@@ -1,4 +1,14 @@
 <template name = "home">
+	<script type="text/javascript">
+	    (function() {
+	        var co=document.createElement("script");
+	        co.type="text/javascript";
+	        co.async=true;
+	        co.src="https://xola.com/checkout.js";
+	        var s=document.getElementsByTagName("script")[0];
+	        s.parentNode.insertBefore(co, s);
+	    })();
+	</script>
 	<div class="map-container">
     	{{> googleMap name="map" options=mapOptions}}
   	</div>
@@ -10,5 +20,4 @@
 	<div id = "yourMarker" class = "ui modal">
 		{{> yourModal}}
 	</div>
-
 </template>
