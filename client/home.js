@@ -47,7 +47,7 @@ Template.home.onCreated(function() {
         		var lng = document.longitude;
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    scaledSize: new google.maps.Size(75, 75),
+  				    scaledSize: new google.maps.Size(65, 65),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
