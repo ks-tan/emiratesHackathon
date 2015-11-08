@@ -20,6 +20,70 @@ Template.home.onCreated(function() {
         zIndex: 1000
 		  });
 
+      var marker1 = new google.maps.Marker({
+        position: new google.maps.LatLng(45.97712, -97.910156),
+        animation: google.maps.Animation.DROP,
+        map: map.instance,
+        zIndex: 1000
+      });
+
+      var infowindow1 = new google.maps.InfoWindow({
+        content: 
+          "<h1>Dakota</h1>" + 
+          "<p><i class='child icon'></i>Fun: 30%</p>" + 
+          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
+          "<p><i class='send icon'></i>Adventure: 60%</p>"  
+      });
+      infowindow1.open(map,marker1);
+
+      var marker2 = new google.maps.Marker({
+        position: new google.maps.LatLng(30, -96),
+        animation: google.maps.Animation.DROP,
+        map: map.instance,
+        zIndex: 1000
+      });
+
+      var infowindow2 = new google.maps.InfoWindow({
+        content: 
+          "<h1>Texas</h1>" + 
+          "<p><i class='child icon'></i>Fun: 20%</p>" + 
+          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
+          "<p><i class='send icon'></i>Adventure: 70%</p>"  
+      });
+      infowindow2.open(map,marker2);
+
+      var marker3 = new google.maps.Marker({
+        position: new google.maps.LatLng(39.97712, -75.910156),
+        animation: google.maps.Animation.DROP,
+        map: map.instance,
+        zIndex: 1000
+      });
+
+      var infowindow3 = new google.maps.InfoWindow({
+        content: 
+          "<h1>New York</h1>" + 
+          "<p><i class='child icon'></i>Fun: 50%</p>" + 
+          "<p><i class='heart icon'></i>Romantic: 40%</p>" +
+          "<p><i class='send icon'></i>Adventure: 10%</p>"  
+      });
+      infowindow3.open(map,marker3);
+
+      var marker4 = new google.maps.Marker({
+        position: new google.maps.LatLng(39.97712, -120.910156),
+        animation: google.maps.Animation.DROP,
+        map: map.instance,
+        zIndex: 1000
+      });
+
+      var infowindow4 = new google.maps.InfoWindow({
+        content: 
+          "<h1>San Francisco</h1>" + 
+          "<p><i class='child icon'></i>Fun: 30%</p>" + 
+          "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
+          "<p><i class='send icon'></i>Adventure: 10%</p>"  
+      });
+      infowindow4.open(map,marker4);
+
     $(".yourMood").on('click', function(event){
       $("#yourMarker").modal("show");
     });
@@ -62,18 +126,11 @@ Template.home.onCreated(function() {
             		id: document._id
           		});
 
-	          	// google.maps.event.addListener(marker, 'dragend', function(event) {
-	           //  	Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
-	          	// });
-
 	          	//click event marker
-	          	//marker.addListener('click', function(event) {
-				// 	Session.set('markerId', marker.id);
-				// 	$("#eventMarker").modal("show");
-				// });
-				marker.addListener('click', function(event) {
-					showListModal(event);
-				});
+	          	marker.addListener('click', function(event) {
+					       Session.set('markerId', marker.id);
+					       $("#eventMarker").modal("show");
+				      });
 
           		markers[document._id] = marker;
         	},

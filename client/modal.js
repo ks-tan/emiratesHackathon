@@ -64,7 +64,7 @@ Template.listModal.events({
 
 Template.yourModal.helpers({
     moods: function() {
-        moodsList = ['Happy', 'Romance', 'Adventurous'];
+        moodsList = ['Fun', 'Romance', 'Adventurous'];
         return moodsList
     }
 })
@@ -80,5 +80,11 @@ Template.yourModal.events({
             mood: mood
         });
         $("#yourMarker").modal("hide");
+        var editText = $("#romanceValue").text();
+        var num = Number(editText.substring(editText.indexOf(" "),editText.indexOf("%"))) + 5;
+        $("#romanceValue").html("<i class='heart icon'></i>Romantic: " + num + "%");
     }
 })
+
+
+
