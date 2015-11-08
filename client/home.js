@@ -7,11 +7,16 @@ Template.home.onCreated(function() {
     	var latLng = Geolocation.latLng();
       Session.set('my_lat', latLng.lat);
       Session.set('my_lng', latLng.lng);
-
+      var image = {
+        url: "images/bluepin.png",
+        scaledSize: new google.maps.Size(35,35),
+        origin: new google.maps.Point(0,0)
+      };
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
 		   	animation: google.maps.Animation.DROP,
 		   	map: map.instance,
+        icon: image,
         zIndex: 1000
 		  });
 
@@ -29,12 +34,20 @@ Template.home.onCreated(function() {
 
       	Attractions.find().observe({
         	added: function (document) {
+            var randomNum = Math.floor((Math.random() * 3) + 1);
+            var mood;
+            if (randomNum == 1) {
+              mood = "fun";
+            } else if (randomNum == 2) {
+              mood = "romantic";
+            } else if (randomNum == 3){
+              mood = "adventure";
+            }
         		var lat = document.latitude;
         		var lng = document.longitude;
-            var mood = document.mood;
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    scaledSize: new google.maps.Size(100, 100),
+  				    scaledSize: new google.maps.Size(75, 75),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
