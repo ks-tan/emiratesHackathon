@@ -62,3 +62,13 @@ body.pushable > .pusher{
 .contain {
 	width: 80%;
 }
+
+#listModalImg {
+	max-height: 200px;
+	width: auto;
+	margin: auto;
+}
+
+#listModalCard {
+	height: 325px;
+}
