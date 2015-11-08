@@ -11,9 +11,16 @@ Template.eventModal.helpers({
 
 Template.listModal.helpers({
     eventList: function() {
-        var lat = Session.get("lat");
-        var lng = Session.get("lng");
-        return lat + ", " + lng;
+        var lat = Number(Session.get("lat"));
+        var lng = Number(Session.get("lng"));
+        return Attractions.find({
+            latitude: {
+                $gt: lat-0.5, $lt: lat+0.5
+            },
+            longitude: {
+                $gt: lng-0.5, $lt: lng+0.5
+            }
+        });
     }
 });
 
@@ -39,8 +46,8 @@ Template.yourModal.helpers({
 Template.yourModal.events({
     'click .chooseYourMood': function(event) {
         var mood = event.target.value;
-        var lat = Session.get('lat');
-        var lng = Session.get('lng');
+        var lat = Number(Session.get('lat'));
+        var lng = Number(Session.get('lng'));
         Markers.insert({
             latitude: lat,
             longitude: lng,
