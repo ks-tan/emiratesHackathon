@@ -34,7 +34,7 @@ Meteor.methods({
 
 		HTTP.get(url, {
 			Headers: {
-				"Host": "api.skyscanner.net"
+				"Host": "api.skyscanner.net",
 				"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
 			}
 		}, function(error,success) {
