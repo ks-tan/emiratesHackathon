@@ -5,8 +5,7 @@ Template.flights.events({
  	},
  	"click .button .primary": function (event) {
  		var input = {};
- 		// createLiveFlightSession(input);
- 		testReverseGeocoding();
+ 		createLiveFlightSession(input);
  	}
 });
 
@@ -25,17 +24,19 @@ function testReverseGeocoding() {
 
 ***/
 
-function requestLiveFlight(input) {
-	if (input.data != undefined && input.data.Status == "UpdatesComplete") {
+function requestLiveFlight(input, result) {
+	if (result != undefined && result.data.Status == "UpdatesComplete") {
 		// finish recursion
+		console.log("finish recursion!");
 		return;
 	} else {
 		Meteor.call("pollSession", input, function (error, result){
 				if (error) {
 					console.log(error);
 				} else {
-					console.log(result);
-					requestLiveFlight(input);
+					window.setTimeout(function() {
+						requestLiveFlight(input, result);
+					}, 2000);
 				}
 			});
 	}
@@ -51,7 +52,7 @@ function createLiveFlightSession(input) {
 		} else {
 			console.log(result);
 			console.log(result.headers.location);
-			requestLiveFlight(result.headers.location);
+			requestLiveFlight(result.headers.location, undefined);
 			
 		}
 	});
@@ -65,10 +66,10 @@ function validateLiveFlightInput(input) {
 		input.destination = "40.747,-74.080"; // ny dummy
 	}
 	if (input.outboundDate == undefined || input.outboundDate == null) {
-		input.outboundDate = "2015-11-08";
+		input.outboundDate = "2015-11-09";
 	}
 	if (input.inboundDate == undefined || input.inboundDate == null) {
-		input.inboundDate = "2015-11-11";
+		input.inboundDate = "2015-11-12";
 	}
 	if (input.noOfAdults == undefined || input.noOfAdults == null) {
 		input.noOfAdults = 1;
@@ -163,7 +164,7 @@ function queryFlightAvailability(input) {
 					});
 				}
 			};
-			console.log(resultQuotes);
+			// console.log(resultQuotes);
         	Session.set("flightSearchResults", resultQuotes);
 		}
 	});
@@ -221,20 +222,19 @@ function formatDate(date) {
 	    mm='0'+mm
 	}
 
-	return yyyy+'-'+mm;//+'-'+dd; 
+	return yyyy+'-'+mm;
 }
 
 Template.flights.helpers({
 	search: function() {
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
-		//dateReturn = "anytime";
-		// var currLat = (Number(Session.get('my_lat')));
 		var currLat = 37.627284;
         var currLng = (Number(Session.get('my_lng')));
 
     	var markerId = Session.get('markerId');
     	var attraction = Attractions.findOne(markerId);
+    	if (attraction == undefined) return;
         var eventLat = (Number(attraction.latitude));
  		var eventLng = (Number(attraction.longitude));
 
@@ -245,8 +245,11 @@ Template.flights.helpers({
         	"inboundDate": ""+dateReturn
         };
         input = validateInput(input);
-        console.log(input); 
+        // console.log(input);
       	queryFlightAvailability(input);
       	return Session.get("flightSearchResults");
+	},
+	isResultsAvailable: function() {
+		return Object.keys(Session.get("flightSearchResults")).length != 0;
 	}
 });
