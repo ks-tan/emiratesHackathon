@@ -22,6 +22,10 @@ Router.route('page3',{
 	template: 'flightsDetail'
 });
 
+Router.route('checkout',{
+	template: 'checkout'
+});
+
 Router.route('populateXola', {
 	template: 'populateXola'
 });
