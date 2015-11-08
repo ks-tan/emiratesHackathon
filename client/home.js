@@ -36,18 +36,19 @@ Template.home.onCreated(function() {
         	added: function (document) {
             var randomNum = Math.floor((Math.random() * 3) + 1);
             var mood;
+            var image;
             if (randomNum == 1) {
-              mood = "fun";
+              mood = "fun_icon";
             } else if (randomNum == 2) {
-              mood = "romantic";
+              mood = "romantic_icon";
             } else if (randomNum == 3){
-              mood = "adventure";
+              mood = "adventure_icon";
             }
         		var lat = document.latitude;
         		var lng = document.longitude;
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    scaledSize: new google.maps.Size(75, 75),
+  				    // scaledSize: new google.maps.Size(75, 75),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
@@ -58,7 +59,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.08,
+            		opacity: 0.8,
             		id: document._id
           		});
 
