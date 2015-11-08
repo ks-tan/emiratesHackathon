@@ -12,30 +12,37 @@ Template.home.onCreated(function() {
 		   	map: map.instance
 		});
 
-      	google.maps.event.addListener(map.instance, 'click', function(event) {
-        	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
-      	});
+		marker.addListener('click', function(event){
+			$("#yourMarker").modal("show");
+		});
+
+      	// google.maps.event.addListener(map.instance, 'click', function(event) {
+       //  	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+      	// });
 
       	var markers = {};
 
-      	Markers.find().observe({
+      	Attractions.find().observe({
         	added: function (document) {
+        		var location = document.location;
+        		var lat = location.substring(0, location.indexOf(", "));
+        		var lng = location.substring(location.indexOf(" "));
           		var marker = new google.maps.Marker({
-            		draggable: true,
-            		animation: google.maps.Animation.DROP,
-            		position: new google.maps.LatLng(document.lat, document.lng),
+            		//draggable: true,
+            		//animation: google.maps.Animation.DROP,
+            		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		id: document._id
           		});
 
-	          	google.maps.event.addListener(marker, 'dragend', function(event) {
-	            	Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
-	          	});
+	          	// google.maps.event.addListener(marker, 'dragend', function(event) {
+	           //  	Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
+	          	// });
 
+	          	//click event marker
 	          	marker.addListener('click', function(event) {
-					console.log("You have clicked on " + marker.id);
-					console.log(Markers.findOne(marker.id));
-					console.log("Zip code is: ");
+					Session.set('markerId', marker.id);
+					$("#eventMarker").modal("show");
 				});
 
           		markers[document._id] = marker;

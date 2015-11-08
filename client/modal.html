@@ -1,0 +1,21 @@
+<template name = "eventModal">
+	<div class="header">{{markerInfo.title}}</div>
+	<div class="image content">
+	    <div class="ui medium image">
+	      <img src="{{markerInfo.pictureUrl}}">
+	    </div>
+	    <div class="description">
+	      <div class="ui header">MOOD HERE</div>
+	      <p>{{markerInfo.description}}</p>
+	    </div>
+	    {{#if isXola markerInfo.source}}
+	    <div class="xola-custom xola-checkout" id={{markerInfo._id}}>
+		    <button class="bookNowButton">Book Now!</button>
+		</div>
+		{{/if}}
+	 </div>
+</template>
+
+<template name = "yourModal">
+	<h1>Your marker</h1>
+</template>
