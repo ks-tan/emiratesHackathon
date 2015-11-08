@@ -36,7 +36,7 @@ Template.home.onCreated(function() {
         		var lng = document.longitude;
             var mood = document.mood;
         		var image = {
-  				    url: 'images/'+mood+'.png',
+  				    url: 'images/happy.png',
   				    scaledSize: new google.maps.Size(100, 100),
   				    origin: new google.maps.Point(0, 0),
 				    };
