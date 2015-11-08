@@ -12,9 +12,9 @@ Template.home.onCreated(function() {
 		   	map: map.instance
 		});
 
-		marker.addListener('click', function(event){
-			$("#yourMarker").modal("show");
-		});
+    $(".yourMood").on('click', function(event){
+      $("#yourMarker").modal("show");
+    });
 
       	// google.maps.event.addListener(map.instance, 'click', function(event) {
        //  	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
