@@ -79,9 +79,10 @@ Template.home.onCreated(function() {
       var infowindow4 = new google.maps.InfoWindow({
         content: 
           "<h1>San Francisco</h1>" + 
-          "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
-          "<p><i class='child icon'></i>Fun: 30%</p>" + 
-          "<p id='adventureValue'><i class='send icon'></i>Adventure: 10%</p>"  
+          "<p id='adventureValue'><i class='send icon'></i>Adventure: 40%</p>" +
+          "<p id='romanceValue'><i class='heart icon'></i>Romantic: 40%</p>" +
+          "<p><i class='child icon'></i>Fun: 20%</p>"
+           
       });
       infowindow4.open(map,marker4);
 
