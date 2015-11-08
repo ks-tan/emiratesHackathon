@@ -1,7 +1,4 @@
 Template.flights.helpers({
-	generate: function () {
-		//call the skyscanner api
-	},
 	result: function() {
 		var res = [
 		    {

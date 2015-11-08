@@ -14,41 +14,34 @@
 			<i class="delete icon"></i>
 		</a> -->
 	</div>
+	{{search}}
 	{{#each result}}
+
+	{{#if roundTrip}}
+
 	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
 		<div class="item">
 			<div class="content">
 
 				<table class="ui celled table">
 					<thead>
-						<tr><th>Departing Flight</th>
-							<th>Return Flight</th></tr>
+						<tr><th>Departing Flight</th></tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
-									<img class="ui avatar image" src="../public/images/flight.png">
+									<img class="ui avatar image" src='images/flight.png'>
 									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
 									<span class="header">Origin to Destination</span>
 									<div class="meta">
-										<span class="goingDepartDateTime">Depart: {{FlightDateTime}}</span>
+<!-- 										<img class="ui avatar image" src='images/flight_takeoff.png'>
+ -->										<span class="goingDepartDateTime">Departure: {{FlightDateTime}}</span>
 									</div>
 									<div class="meta">
-										<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
+<!-- 										<img class="ui avatar image" src='images/flight_land.png'>
+ -->										<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
 									</div>
-									<div class="description"> Lorem
-									</div>
-								</td>
-								<td>
-									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
-									<span class="header">Destination to Origin</span>
-									<div class="meta">
-										<span class="backDepartDateTime">Depart: {{FlightDateTime}}</span>
-									</div>
-									<div class="meta">
-										<span class="backArriveDateTime">Arrival: {{FlightDateTime}}</span>
-									</div>
-									<div class="description"> Ipsum
+									<div class="description"> 1h 30m
 									</div>
 								</td>
 							</tr>
@@ -72,6 +65,71 @@
 			</div>
 		</div>
 
+
+	{{else}}
+	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
+		<div class="item">
+			<div class="content">
+
+				<table class="ui celled table">
+					<thead>
+						<tr><th>Departing Flight</th>
+							<th>Return Flight</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img class="ui avatar image" src='images/flight.png'>
+									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
+									<span class="header">Origin to Destination</span>
+									<div class="meta">
+	}
+<!-- 										<img class="ui avatar image" src='images/flight_takeoff.png'>
+ -->										<span class="goingDepartDateTime">Departure: {{FlightDateTime}}</span>
+									</div>
+									<div class="meta">
+<!-- 										<img class="ui avatar image" src='images/flight_land.png'>
+ -->										<span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span>
+									</div>
+									<div class="description"> 1h 30m
+									</div>
+								</td>
+								<td>
+									<img class="ui avatar image" src='images/flight.png'>
+									<span style="font-size:large" class="header">Singapore Airlines {{FlightNo}}</span><br>
+									<span class="header">Destination to Origin</span>
+									<div class="meta">
+<!-- 										<img class="ui avatar image" src='images/flight_takeoff.png'>
+ -->										<span class="backDepartDateTime">Departure: {{FlightDateTime}}</span>	
+									</div>
+									<div class="meta">
+<!-- 										<img class="ui avatar image" src='images/flight_land.png'>
+ -->										<span class="backArriveDateTime">Arrival: {{FlightDateTime}}</span>
+									</div>
+									<div class="description"> 4h 0m
+									</div>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<div class="extra">
+						<div class="ui label"><i class="globe icon"></i>Domestic</div>
+						<div class="ui right floated labeled button">
+							<span class="ui basic label">
+						    Estimated Fare: $1709
+						  	</span>
+							<div class="ui primary button">
+						  	Buy tickets
+						    <i class="right chevron icon"></i> 
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/if}}
 		<div class="ui divider"></div>
 		{{/each}}
 </div>
