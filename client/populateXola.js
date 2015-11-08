@@ -14,6 +14,7 @@ getXolaExperiences = function(url){
 
 		var json = result.data
 		var experiences = json.data
+
 		for (x in experiences) {
 			var experience = experiences[x]
 			var name = experience.name
@@ -38,6 +39,8 @@ getXolaExperiences = function(url){
 				price: experience.price,
 				pictureUrl: photoUrl
 			});
+
+			getXolaDateAndTime(experience.id);
 		}
 
 		if (json.paging.next != null) {
@@ -46,4 +49,23 @@ getXolaExperiences = function(url){
 			getXolaExperiences(nextPageUrl)
 		}
 	});
+}
+
+getXolaDateAndTime = function(id){
+	var url = "https://dev.xola.com/api/experiences/" + id + "/availability";
+	Meteor.call("populateXola", url , function(err, result) {
+		if (typeof err != "undefined") {
+			console.log(err);
+			return
+		}
+
+		var dateList = result.data
+
+		for (date in dateList) {
+			Attractions.update(id, {
+				$set: {date: date}
+			})
+			break;
+		}
+	})
 }

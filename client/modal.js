@@ -3,11 +3,24 @@ Template.eventModal.helpers({
     	var markerId = Session.get('markerId');
     	return Attractions.findOne(markerId);
     },
-    isXola: function(source){
-    	console.log(source == "Xola");
-    	return source == "Xola";
+    isInWatchlist: function(id) {
+        var watchlist = Watchlist.findOne({attractionId: id});
+        console.log(typeof watchlist !== "undefined")
+        return typeof watchlist !== "undefined"
     }
 });
+
+Template.eventModal.events({
+    'click #smapButton': function(event) {
+        var id = event.target.value;
+        Watchlist.insert({
+            attractionId: id
+        });
+        // $("#smapButton").attr('disabled','disabled');
+        // $("#smapButton").text('SMapped');
+        $("#eventMarker").modal("show");
+    }
+})
 
 Template.listModal.helpers({
     eventList: function() {
@@ -25,20 +38,9 @@ Template.listModal.helpers({
 });
 
 Template.listModal.events({
-    'click #smapButton': function() {
+    'click #findOutMoreButton': function() {
         Session.set('markerId', this._id);
         $("#eventMarker").modal("show");
-    }
-});
-
-Template.eventModal.onRendered({ 
-	function() {
-        var co=document.createElement("script");
-        co.type="text/javascript";
-        co.async=true;
-        co.src="https://xola.com/checkout.js";
-        var s=document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(co, s);
     }
 });
 

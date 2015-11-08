@@ -17,8 +17,6 @@ getStubHubData= function(){
             for (var event_index in stateData) {
                 eventData = stateData[event_index];
                 console.log(eventData);
-                var date = eventData.eventDateLocal;
-                console.log(typeof date);
                 if (typeof eventData.id === "undefined" || eventData.id == "" || typeof Attractions.findOne({_id: String(eventData.id)}) !== "undefined") {
                 	continue
                 }
@@ -36,8 +34,9 @@ getStubHubData= function(){
                 if (typeof eventData.imageUrl !== "undefined") {
                     pictureUrl = eventData.imageUrl
                 }
-                var date = eventData.eventDateLocal;
-                console.log(date);
+                var datetime = eventData.eventDateLocal;
+                var date = datetime.substring(0, 10);
+                var time = datetime.substring(11, 19);
 
                 Attractions.insert({
                     _id: id,
@@ -47,8 +46,9 @@ getStubHubData= function(){
                     latitude: lat,
                     longitude: lng,
                     price: ticketPrice,
-                    pictureUrl: pictureUrl
-
+                    pictureUrl: pictureUrl,
+                    date: date,
+                    time: time
                 });
             }
         }
