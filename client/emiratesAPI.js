@@ -1,9 +1,57 @@
 Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
-    queryFlightAvailability(a);
-  },
+    createLiveFlightSession(a);
+  }
 });
+
+// the function below is the API call to skyscanner's live pricing
+/***
+
+***/
+
+function requestLiveFlight(input) {
+
+}
+
+function createLiveFlightSession(input) {
+	input = validateLiveFlightInput(input);
+	Meteor.call("createLiveFlightSession", input, function(error, result) {
+		if (error) {
+			console.log(error);
+		} else {
+			console.log(result);
+		}
+	});
+}
+
+function validateLiveFlightInput(input) {
+	if (input.origin == undefined || input.origin == null) {
+		input.origin = "37.678,-122.452"; // sf dummy
+	}
+	if (input.destination == undefined || input.destination == null) {
+		input.destination = "40.747,-74.080"; // ny dummy
+	}
+	if (input.outboundDate == undefined || input.outboundDate == null) {
+		input.outboundDate = "2015-11-08";
+	}
+	if (input.inboundDate == undefined || input.inboundDate == null) {
+		input.inboundDate = "2015-11-11";
+	}
+	if (input.noOfAdults == undefined || input.noOfAdults == null) {
+		input.noOfAdults = 1;
+	}
+	if (input.noOfChildren == undefined) {
+		input.noOfChildren = 0;
+	}
+	if (input.noOfInfants == undefined) {
+		input.noOfInfants = 0;
+	}
+	if (input.cabinClass == undefined) {
+		input.cabinClass = "Economy";
+	}
+	return input;
+}
 
 // the function below is the API call to skyscanner's browse quotes
 /***
@@ -30,12 +78,11 @@ RETURN: an object of necessary data. The properties are:
 
 function queryFlightAvailability(input) {
 	input = validateInput(input);
-	var resultQuotes = [];
 	Meteor.call("queryFlightAvailability", input, function(error, result){
 		if (error) {
 			console.log(error);
 		} else {
-			//var resultQuotes = [];
+			var resultQuotes = [];
 			for (var i = result.data.Quotes.length - 1; i >= 0; i--) {
 				var quote = result.data.Quotes[i];
 				var outboundLeg = quote.OutboundLeg;
@@ -54,24 +101,27 @@ function queryFlightAvailability(input) {
 
 				} else {
 					var isRoundTrip = false;
-					var inboundCarrier = "";
+					var inboundCarrier = "unknown carrier";
 					var inboundOrigin = "";
 					var inboundDestination = "";
 					var inboundDate = "";
 				}
-				resultQuotes.push({
-					price: quote.MinPrice, // int
-					isDirectFlight: quote.Direct, // bool
-					outboundCarrier: outboundCarrier, // string
-					outboundOrigin: outboundOrigin, // string
-					outboundDestination: outboundDestination, // string
-					outboundDate: outboundDate.substring(0,10), // string or date
-					isRoundTrip: isRoundTrip, // bool
-					inboundCarrier: inboundCarrier, // string
-					inboundOrigin: inboundOrigin, // string
-					inboundDestination: inboundDestination, // string
-					inboundDate: inboundDate.substring(0,10) // string or date
-				});
+
+				if (outboundCarrier != "unknown carrier" && inboundCarrier != "unknown carrier") {
+					resultQuotes.push({
+						price: quote.MinPrice, // int
+						isDirectFlight: quote.Direct, // bool
+						outboundCarrier: outboundCarrier, // string
+						outboundOrigin: outboundOrigin, // string
+						outboundDestination: outboundDestination, // string
+						outboundDate: outboundDate.substring(0,10), // string or date
+						isRoundTrip: isRoundTrip, // bool
+						inboundCarrier: inboundCarrier, // string
+						inboundOrigin: inboundOrigin, // string
+						inboundDestination: inboundDestination, // string
+						inboundDate: inboundDate.substring(0,10), // string or date
+					});
+				}
 			};
 			console.log(resultQuotes);
         	Session.set("flightSearchResults", resultQuotes);
