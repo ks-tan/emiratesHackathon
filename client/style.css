@@ -1,5 +1,9 @@
 body{
-	background-color: #9933CC;
+	background-color: #262323;
+}
+
+body.pushable > .pusher{
+	background-color: #262323 !important;
 }
 
 .map-container {
@@ -20,6 +24,37 @@ body{
 	height: 100%;
 }
 
+
 #sidebar {
 	background-color: #3F2A5E;
+}
+
+#outerCard {
+	background-color: #3F2A5E;
+	width: 80%;
+	margin: auto;
+	color: white;
+	font-size: 20px;
+}
+
+#innerCard {
+	background-color: #ffffff;
+	width: 90%;
+	margin: auto;
+	color: black;
+	font-size: 15px;
+}
+
+#warningSign {
+	maring-right: 20px;
+}
+
+#smapButton{
+	width: 100%;
+	margin: auto;
+}
+
+#smappedButton{
+	width: 100%;
+	margin: auto;
 }

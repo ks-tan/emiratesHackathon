@@ -119,11 +119,13 @@ Template.smap.helpers({
 })
 
 Template.smap.events({
-	'click .deleteButton': function(event){
+	'click #deleteButton': function(event){
+		event.preventDefault();
         var id = event.target.value;
         Watchlist.remove(id);
 	},
-	'click .bookNowButton': function(event) {
+	'click #bookNowButton': function(event) {
+		event.preventDefault();
 		Session.set('attractionId', event.target.value);
 		Router.go('checkout')
 	}

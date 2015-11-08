@@ -1,26 +1,24 @@
 <template name = "eventModal">
-	
 	<div class="header">{{markerInfo.title}}</div>
 	<div class="image content">
-	    <div class="ui rounded large image">
-	      {{#if markerInfo.pictureUrl}}
+	    <div class="ui medium image">
 	      <img src="{{markerInfo.pictureUrl}}">
-	      {{else}}
-	      <img src='images/placeholder.png'>
-	      {{/if}}
 	    </div>
 	    <div class="description">
+<<<<<<< HEAD
 	      	<div class="ui header">MOOD HERE</div>
 	      	<p>{{markerInfo.description}}</p>
 	      	{{#if isInWatchlist markerInfo._id}}
-		    <button class="ui violet disabled button" id="smappedButton">SMapped</button>
+		    <button class="ui black button" id="smappedButton" disabled>SMapped</button>
 		    {{else}}
-		    <button class="ui violet button" id="smapButton" value={{markerInfo._id}} >SMap it!</button>
+		    <button class="ui primary button" id="smapButton" value={{markerInfo._id}} >SMap it!</button>
 		    {{/if}}
-
+=======
+	      <div class="ui header">MOOD HERE</div>
+	      <p>{{markerInfo.description}}</p>    
+>>>>>>> 0e08f2d44254e76d349a81f184598409df3f9963
 	    </div>
 	 </div> 
-	 <div class="ui divider"></div>
 	 {{>flights}}
 </template>
 
@@ -39,31 +37,24 @@
 </template>
 
 <template name = "listModal">
-	<div style="overflow-y:auto; overflow-x:hidden; height:600px; padding-right:20px; padding-left:20px; padding-top:10px; padding-bottom:10px">
 	<h1>List of Events</h1>
-	<div class="ui divider"></div>
-	<div class = "ui three column grid container">
+	<div class = "ui three column grid">
 		{{#each eventList}}
-		<div class = "fluid column">
-			<div class = "ui card">
-				<div class = "ui large image">
-					{{#if pictureUrl }}
-					<img src = "{{pictureUrl}}" >
-					{{else}}
-					<img src = 'images/placeholder.png' >
-					{{/if}}					
+		<div class = "column">
+			<div class = "ui fluid card">
+				<div class = "image">
+					<img src = "{{pictureUrl}}">
 				</div>
 				<div class = "content">
 					<div class = "header">
 						{{title}}
 					</div>
 				</div>
-				<div class="ui bottom attached violet button" id = "findOutMoreButton">
+				<div class="ui bottom attached button" id = "findOutMoreButton">
 			      	Find Out More
 			    </div>		
 			</div>
 		</div>
 		{{/each}}
-	</div>
 	</div>
 </template>
