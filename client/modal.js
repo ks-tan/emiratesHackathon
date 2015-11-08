@@ -3,9 +3,10 @@ Template.eventModal.helpers({
     	var markerId = Session.get('markerId');
     	return Attractions.findOne(markerId);
     },
-    isInWatchlist: function() {
-        var watchlist = Watchlist.findOne({_id: Attractions.findOne(markerId).id});
-        return typeof watchlist !== "undefined" ? "disabled" : ""
+    isInWatchlist: function(id) {
+        var watchlist = Watchlist.findOne({attractionId: id});
+        console.log(typeof watchlist !== "undefined")
+        return typeof watchlist !== "undefined"
     }
 });
 
@@ -15,8 +16,9 @@ Template.eventModal.events({
         Watchlist.insert({
             attractionId: id
         });
-        $("#smapButton").attr('disabled','disabled');
-        $("#smapButton").text('SMapped');
+        // $("#smapButton").attr('disabled','disabled');
+        // $("#smapButton").text('SMapped');
+        $("#eventMarker").modal("show");
     }
 })
 
