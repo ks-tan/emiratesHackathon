@@ -1,43 +1,42 @@
 <template name = "flights">
 	
-	<div style="overflow-y:auto; height:400px;">
+		<div style="padding-right:20px; padding-left:20px" class="ui teal ribbon label"><h3>Estimated fares</h3>
+		</div>	
+		<div style="overflow-y:auto; height:400px;">
 
 
-		<div style="padding-right:20px; padding-left:50px"> 
-			<span class="ui teal ribbon label"><h3>Estimated fares</h3></span>
+		{{#each search}}
+		{{#unless isRoundTrip}}
+		{{>flightRowOneWay}}
+		{{else}}
+		{{>flightRowRoundTrip}}
+		{{/unless}}
+		<div class="ui divider"></div>
+		{{/each}}
 	</div>
-	{{#each search}}
-	{{#unless isRoundTrip}}
-	{{>flightRowOneWay}}
-	{{else}}
-	{{>flightRowRoundTrip}}
-	{{/unless}}
-<div class="ui divider"></div>
-{{/each}}
-</div>
 </template>
 
 <template name = "flightRowRoundTrip">
 
-<div style="padding-right:20px; padding-left:20px" class="ui divided items">
-	<div class="item">
-		<div class="content">
+	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
+		<div class="item">
+			<div class="content">
 
-			<table class="ui celled table">
-				<thead>
-					<tr><th>Departing Flight</th>
-						<th>Return Flight</th></tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<img class="ui avatar image" src='images/flight.png'>
-								<span style="font-size:large" class="header">{{outboundCarrier}}</span><br>
-								<span class="header">{{outboundOrigin.Name}} ({{outboundOrigin.IataCode}}) to {{outboundDestination.Name}} ({{outboundDestination.IataCode}})</span>
-								<div class="meta">
-									<span class="goingDepartDateTime">Departure: {{outboundDate}}  </span>
-								</div>
-								<div class="meta">
+				<table class="ui celled table">
+					<thead>
+						<tr><th>Departing Flight</th>
+							<th>Return Flight</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img class="ui avatar image" src='images/flight.png'>
+									<span style="font-size:large" class="header">{{outboundCarrier}}</span><br>
+									<span class="header">{{outboundOrigin.Name}} ({{outboundOrigin.IataCode}}) to {{outboundDestination.Name}} ({{outboundDestination.IataCode}})</span>
+									<div class="meta">
+										<span class="goingDepartDateTime">Departure: {{outboundDate}}  </span>
+									</div>
+									<div class="meta">
 <!-- 										<img class="ui avatar image" src='images/flight_land.png'>
 -->										<!-- <span class="goingArriveDateTime">Arrival: {{FlightDateTime}}</span> -->
 </div>
@@ -71,7 +70,7 @@
 			Estimated Fare: ${{price}}
 		</span>
 		<div class="ui primary button">
-		Details
+			Details
 			<i class="right chevron icon"></i> 
 		</div>
 	</div>
@@ -82,7 +81,7 @@
 </template>
 
 <template name = "flightRowOneWay">
-		<div style="padding-right:20px; padding-left:20px" class="ui divided items">
+	<div style="padding-right:20px; padding-left:20px" class="ui divided items">
 		<div class="item">
 			<div class="content">
 
