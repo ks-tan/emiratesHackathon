@@ -64,7 +64,7 @@ Template.listModal.events({
 
 Template.yourModal.helpers({
     moods: function() {
-        moodsList = ['Happy', 'Romance', 'Adventurous', 'Calm'];
+        moodsList = ['Happy', 'Romance', 'Adventurous'];
         return moodsList
     }
 })
