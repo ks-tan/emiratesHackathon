@@ -1,8 +1,12 @@
 Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
-    createLiveFlightSession(a);
-  }
+    	createLiveFlightSession(a);
+ 	},
+ 	"click .button .primary": function (event) {
+ 		var input = {};
+ 		createLiveFlightSession(input);
+ 	}
 });
 
 // the function below is the API call to skyscanner's live pricing
@@ -11,8 +15,22 @@ Template.flights.events({
 ***/
 
 function requestLiveFlight(input) {
-
+	if (input.data != undefined && input.data.Status == "UpdatesComplete") {
+		// finish recursion
+		return;
+	} else {
+		Meteor.call("pollSession", input, function (error, result){
+				if (error) {
+					console.log(error);
+				} else {
+					console.log(result);
+					requestLiveFlight(input);
+				}
+			});
+	}
 }
+
+// http://api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en-US/37.776,-122.415-latlong/36.125,-97.065-latlong/2015-11-20/2015-11-25?apikey=ah784286533249542154336639656685
 
 function createLiveFlightSession(input) {
 	input = validateLiveFlightInput(input);
@@ -21,6 +39,9 @@ function createLiveFlightSession(input) {
 			console.log(error);
 		} else {
 			console.log(result);
+			console.log(result.headers.location);
+			requestLiveFlight(result.headers.location);
+			
 		}
 	});
 }
@@ -150,18 +171,15 @@ function placeNameLookup(placeId, placeArray) {
 }
 
 function validateInput(input) {
-	if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
-		input.origin = "37.678,-122.452"; // sf latlong lol
-	}
-	if (input.destination == undefined || input.destination == null || isNaN(input.destination)) {
-		input.destination = "anywhere";
-	}
+	// if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
+	// 	input.origin = "37.678,-122.452"; // sf latlong lol
+	// }
 	if (input.outboundDate == undefined || input.outboundDate == null) {
 		input.outboundDate = "anytime";
 	}
-	if (input.inboundDate == undefined || input.inboundDate == null) {
-		input.inboundDate = "anytime";
-	}
+	// if (input.inboundDate == undefined || input.inboundDate == null) {
+	// 	input.inboundDate = "anytime";
+	// }
 	return input;
 }
 
@@ -184,20 +202,22 @@ function formatDate(date) {
 	    mm='0'+mm
 	}
 
-	return yyyy+'-'+mm+'-'+dd; 
+	return yyyy+'-'+mm;//+'-'+dd; 
 }
 
 Template.flights.helpers({
 	search: function() {
 		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
 		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
-		var currLat = validateLatLng(Number(Session.get('my_lat')));
-        var currLng = validateLatLng(Number(Session.get('my_lng')));
-        var eventLat = validateLatLng(Number(Session.get('lat')));
- 		var eventLng = validateLatLng(Number(Session.get('lng')));
+		//dateReturn = "anytime";
+		var currLat = (Number(Session.get('my_lat')));
+        var currLng = (Number(Session.get('my_lng')));
 
- 		console.log(eventLng);
- 		console.log(eventLat);
+    	var markerId = Session.get('markerId');
+    	var attraction = Attractions.findOne(markerId);
+        var eventLat = (Number(attraction.latitude));
+ 		var eventLng = (Number(attraction.longitude));
+
         var input = {
         	"origin": ""+currLat+","+currLng,
         	"destination": ""+eventLat+","+eventLng,

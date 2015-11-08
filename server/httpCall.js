@@ -13,8 +13,7 @@ Meteor.methods({
         records = [];
         //var states= ["AL","AK", "AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA"];
         //var states= ["ME","MD", "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND", "OH","OK","OR"];
-        //var states= ["PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
-        var states = ['NY', 'CA'];
+        var states= ["PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
         for (var index in states) {
             state = states[index];
             var StubHubData = Meteor.http.call("GET", "https://api.stubhub.com/search/catalog/events/v3?status=active |contingent&country=US&state=" + state + "&locale=en_US&sort=eventDateLocal desc&rows=100", {
@@ -32,5 +31,13 @@ Meteor.methods({
             records.push(StubHubData.data.events)
         };
         return records
+    },
+    'getLocation': function(lat,lng){
+    	this.unblock()
+    	var location = Meteor.http.call("GET", "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + ","+ lng + "&sensor=true");
+    	console.log(lat);
+    	console.log(lng);
+    	console.log(location.data);
+    	return location.data
     }
 });

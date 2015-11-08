@@ -1,3 +1,43 @@
 <template name = "smap">
-	
+	<script type="text/javascript">
+	    (function() {
+	        var co=document.createElement("script");
+	        co.type="text/javascript";
+	        co.async=true;
+	        co.src="https://xola.com/checkout.js";
+	        var s=document.getElementsByTagName("script")[0];
+	        s.parentNode.insertBefore(co, s);
+	    })();
+	</script>
+	<div class = "ui one column grid">
+		{{#each getWatchList}}
+			<div class = "column">
+				<!-- Outer Card -->
+				<div class = "ui fluid card">
+					<b><u><p>{{location}}</p></u></b>
+					<div class = "ui one column grid">
+						{{#each activities}}
+							<div class = "column">
+								<!-- Inner Card -->
+								<div class = "ui fluid card">
+									<p>{{title}} | {{date}} </p>
+									{{#if isXola source}}
+										<div class="xola-custom xola-checkout" id="{{a_id}}">
+										    <button>Book Now</button>
+										</div>
+									{{/if}}
+									<div>
+										<button class="deleteButton" value="{{w_id}}">X</button>
+									</div>
+								</div>
+								<!-- Inner Card -->
+							</div>
+						{{/each}}
+					</div>
+					<br>
+				</div>
+				<!-- Outer Card -->
+			</div>
+		{{/each}}
+	</div>
 </template>
