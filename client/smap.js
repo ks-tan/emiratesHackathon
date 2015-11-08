@@ -149,11 +149,13 @@ Template.smap.helpers({
 	},
 	getSequence: function(index) {
 		if (index + 1 == 1) {
-			return "1st Destination: ";
+			return "1st Destination ";
 		} else if (index + 1 == 2) {
-			return "2nd Destination: ";
+			return "2nd Destination ";
+		} else if (index + 1 == 3) {
+			return "3rd Destination ";
 		} else {
-			return (index + 1) + "rd Destination: ";
+			return (index + 1) + "th Destination";
 		}
 	}
 })
