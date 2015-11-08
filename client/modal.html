@@ -9,14 +9,16 @@
 	      <p>{{markerInfo.description}}</p>
 	    </div>
 	    {{#if isXola markerInfo.source}}
-	    <div class="xola-custom xola-checkout" id={{markerInfo._id}}>
-		    <button class="bookNowButton">Book Now!</button>
-		</div>
+	    	<div class="xola-custom xola-checkout" id="4f2b1dcc536e864069000001">
+			    <button>Book Now</button>
+			</div>
 		{{/if}}
 	 </div> 
 	 {{>flights}}
 </template>
 
 <template name = "yourModal">
-	<h1>Your marker</h1>
+	{{#each moods}}
+		<button class = 'chooseYourMood'>{{this}}</button><br>
+	{{/each}}
 </template>

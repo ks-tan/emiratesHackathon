@@ -12,9 +12,10 @@ Template.home.onCreated(function() {
 		   	map: map.instance
 		});
 
-		marker.addListener('click', function(event){
-			$("#yourMarker").modal("show");
-		});
+    $(".yourMood").on('click', function(event){
+      $("#yourMarker").modal("show");
+      $(".chooseYourMood").attr(latLng);
+    });
 
       	// google.maps.event.addListener(map.instance, 'click', function(event) {
        //  	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
@@ -24,9 +25,8 @@ Template.home.onCreated(function() {
 
       	Attractions.find().observe({
         	added: function (document) {
-        		var location = document.location;
-        		var lat = location.substring(0, location.indexOf(", "));
-        		var lng = location.substring(location.indexOf(" "));
+        		var lat = document.latitude;
+        		var lng = document.longitude;
         		var image = {
 				    url: 'images/happy.png',
 				    scaledSize: new google.maps.Size(50, 50),
