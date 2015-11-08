@@ -17,7 +17,10 @@ getStubHubData= function(){
             for (var event_index in stateData) {
                 eventData = stateData[event_index];
                 console.log(eventData);
-                var id = eventData.id;
+                if (typeof eventData.id === "undefined" || eventData.id == "" || typeof Attractions.findOne({_id: String(eventData.id)}) !== "undefined") {
+                	continue
+                }
+                var id = String(eventData.id);
                 var name = eventData.name;
                 var desc = eventData.description;
                 var loc = eventData.venue.latitude + ", " + eventData.venue.longitude;
