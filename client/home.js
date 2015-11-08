@@ -112,7 +112,7 @@ Template.home.onCreated(function() {
         		var lng = document.longitude;
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    scaledSize: new google.maps.Size(65, 65),
+  				    scaledSize: new google.maps.Size(40, 40),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
@@ -123,7 +123,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.08,
+            		opacity: 0.3,
             		id: document._id
           		});
 
