@@ -1,6 +1,6 @@
 <template name = "eventModal">
 	
-	<div style="padding-right:20px; padding-left:50px" class="ui teal ribbon label"><h3>{{markerInfo.title}}</h3></div>
+	<div style="padding-right:20px; padding-left:100px" class="ui teal ribbon label"><h3>{{markerInfo.title}}</h3></div>
 
 	<div class="image content">
 	    <div class="ui rounded large image">
@@ -11,7 +11,6 @@
 	      {{/if}}
 	    </div>
 	    <div class="description">
-	      	<div class="ui header">MOOD HERE</div>
 	      	<p>{{markerInfo.description}}</p>
 	      	{{#if isInWatchlist markerInfo._id}}
 		    <button class="ui violet disabled button" id="smappedButton">SMapped</button>

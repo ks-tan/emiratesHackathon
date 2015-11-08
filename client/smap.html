@@ -6,6 +6,9 @@
 	<div class = "contain">
 		<div class = "ui one column grid">
 			{{#each getWatchList}}
+
+			<!-- {{searchFlights lat lng}}
+ -->
 				<div class = "column">
 					<!-- Outer Card -->
 					<div class = "ui fluid card" id = "outerCard">
@@ -18,12 +21,16 @@
 								{{#if isXola source}}
 								<br>
 									<div class="xola-custom xola-checkout" id="{{a_id}}">
-									    <button class="ui button" id="bookNowButton" value="{{a_id}}">Book Now</button>
-									    <button class="ui button" id="deleteButton" value="{{w_id}}">
-									    	<i class="remove icon"></i>
+									    <div class="ui buttons">
+									  	<button class="ui button" id="deleteButton" value="{{w_id}}">
+									    <i class="remove icon"></i>
 									    </button>
+									    <div class="or"></div>
+									    <button class="positive ui button" id="bookNowButton" value="{{a_id}}" >Book Now</button>	
+									    </div>
+									    
 										{{#if flag}}
-										<img align="right" class="warningSign" src="images/warning.png">
+										 
 										{{/if}}
 									</div>
 								{{/if}}
@@ -31,10 +38,14 @@
 								{{#if isStubHub source}}
 								<br>
 									<div id="{{a_id}}">
-									    <a href="http://www.stubhub.com/" target="_blank"><button class="ui button">Book Now</button></a>
-									    <button class="ui button" id="deleteButton" value="{{w_id}}">
-									    	<i class="remove icon"></i>
+									    <div class="ui buttons">
+									  	<button class="ui button" id="deleteButton" value="{{w_id}}">
+									    <i class="remove icon"></i>
 									    </button>
+									    <div class="or"></div>
+									    <a href="http://www.stubhub.com/" target="_blank"><button class="positive ui button">Book Now</button></a>	
+									    </div>
+
 										{{#if flag}}
 										<img align="right" class="warningSign" src="images/warning.png">
 										{{/if}}
