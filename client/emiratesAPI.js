@@ -1,8 +1,8 @@
-Template.page2.events({
+Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
     onInputChange(a);
-  }
+  },
 });
 
 // the function below is the API call to skyscanner's browse quotes
@@ -99,7 +99,7 @@ function placeNameLookup(placeId, placeArray) {
 
 function validateInput(input) {
 	if (input.origin == undefined || input.origin == null) {
-		input.origin = "50,0";
+		input.origin = "37.678,-122.452"; // sf latlong lol
 	}
 	if (input.destination == undefined || input.destination == null) {
 		input.destination = "anywhere";
@@ -114,3 +114,19 @@ function validateInput(input) {
 }
 
 
+Template.flights.helpers({
+	roundTrip: function () {
+		return true;
+	},
+	search: function() {
+		var dateDepart = new Date();
+		var dateReturn = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+
+		console.log(dateDepart);
+		console.log(dateReturn);
+		var currLat = Session.get('lat');
+        var currLng = Session.get('lng');
+        
+        var input = [{}];
+	}
+});
