@@ -99,9 +99,11 @@ Template.yourModal.events({
           });
         });
 
-        marker.addListener('click', function(event) {
-           showListModal(event);
-         });
+        // marker.addListener('click', function(event) {
+        //    showListModal(event);
+        //  });
+        $('.ui.sidebar').sidebar('toggle');
+        $("#yourMarker").modal("hide");
     }
 })
 
