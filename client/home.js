@@ -20,82 +20,14 @@ Template.home.onCreated(function() {
         zIndex: 1000
 		  });
 
-      var marker1 = new google.maps.Marker({
-        position: new google.maps.LatLng(43.544596, -96.731103),
-        animation: google.maps.Animation.DROP,
-        map: map.instance,
-        zIndex: 1000
-      });
-
-      var infowindow1 = new google.maps.InfoWindow({
-        content: 
-          "<h1>Dakota</h1>" + 
-          "<p><i class='send icon'></i>Adventure: 60%</p>" +
-          "<p><i class='child icon'></i>Fun: 30%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<button class='ui secondary button' onclick='showListModal(43.544596, -96.731103)'>Show Events</button>"
-      });
-      infowindow1.open(map,marker1);
-
-      var marker2 = new google.maps.Marker({
-        position: new google.maps.LatLng(30.267153, -97.743061),
-        animation: google.maps.Animation.DROP,
-        map: map.instance,
-        zIndex: 1000
-      });
-
-      var infowindow2 = new google.maps.InfoWindow({
-        content: 
-          "<h1>Texas</h1>" + 
-          "<p><i class='send icon'></i>Adventure: 70%</p>" +
-          "<p><i class='child icon'></i>Fun: 20%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<button class='ui secondary button' onclick='showListModal(30.267153, -97.743061)'>Show Events</button>"
-      });
-      infowindow2.open(map,marker2);
-
-      var marker3 = new google.maps.Marker({
-        position: new google.maps.LatLng(38.907192, -77.036871),
-        animation: google.maps.Animation.DROP,
-        map: map.instance,
-        zIndex: 1000
-      });
-
-      var infowindow3 = new google.maps.InfoWindow({
-        content: 
-          "<h1>New York</h1>" + 
-          "<p><i class='child icon'></i>Fun: 50%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 40%</p>" +
-          "<p><i class='send icon'></i>Adventure: 10%</p>"  +
-          "<button class='ui secondary button' onclick='showListModal(38.907192, -77.036871)'>Show Events</button>"
-      });
-      infowindow3.open(map,marker3);
-
-      var marker4 = new google.maps.Marker({
-        position: new google.maps.LatLng(37.774929, -122.419416),
-        animation: google.maps.Animation.DROP,
-        map: map.instance,
-        zIndex: 1000
-      });
-
-      var infowindow4 = new google.maps.InfoWindow({
-        content: 
-          "<h1>San Francisco</h1>" + 
-          "<p><i class='child icon'></i>Fun: 30%</p>" + 
-          "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
-          "<p><i class='send icon'></i>Adventure: 10%</p>"   +
-          "<button class='ui secondary button' onclick='showListModal(37.774929, -122.419416)'>Show Events</button>"
-      });
-      infowindow4.open(map,marker4);
-
     $(".yourMood").on('click', function(event){
       $("#yourMarker").modal("show");
     });
 
 
-      	// google.maps.event.addListener(map.instance, 'click', function(event) {
-      	// 	showListModal(event);
-      	// });
+      	google.maps.event.addListener(map.instance, 'click', function(event) {
+      		showListModal(event);
+      	});
 
         map.instance.setOptions({ minZoom: 4, maxZoom: 15 });
 
@@ -137,10 +69,14 @@ Template.home.onCreated(function() {
           		});
 
 	          	//click event marker
-	          	marker.addListener('click', function(event) {
-					       Session.set('markerId', marker.id);
-					       $("#eventMarker").modal("show");
-				      });
+	         //  	marker.addListener('click', function(event) {
+					     //   Session.set('markerId', marker.id);
+					     //   $("#eventMarker").modal("show");
+				      // });
+
+            marker.addListener('click', function(event) {
+               showListModal(event);
+             });
 
           		markers[document._id] = marker;
         	},
@@ -169,9 +105,10 @@ Template.home.helpers({
     }
 });
 
-showListModal = function(lat, lng){
-    console.log(lat);
-    console.log(lng);
+showListModal = function(event){
+  console.log(event);
+    var lat =  event.latLng.lat();
+    var lng =  event.latLng.lng();
     Session.set("lat", lat);
     Session.set("lng", lng);
     $("#listModal").modal("show");
