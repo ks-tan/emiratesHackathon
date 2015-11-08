@@ -1,40 +1,46 @@
 <template name = "smap">
-	<script type="text/javascript">
-	    (function() {
-	        var co=document.createElement("script");
-	        co.type="text/javascript";
-	        co.async=true;
-	        co.src="https://xola.com/checkout.js";
-	        var s=document.getElementsByTagName("script")[0];
-	        s.parentNode.insertBefore(co, s);
-	    })();
-	</script>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class = "ui one column grid">
 		{{#each getWatchList}}
 			<div class = "column">
 				<!-- Outer Card -->
-				<div class = "ui fluid card">
-					<b><u><p>{{location}}</p></u></b>
+				<div class = "ui fluid card" id = "outerCard">
+					<b><p>{{location}}</p></b>
 					<div class = "ui one column grid">
 						{{#each activities}}
 							<div class = "column">
 								<!-- Inner Card -->
-								<div class = "ui fluid card">
-									<p>{{title}} | {{date}} </p>
+								<div class = "ui fluid card" id = "innerCard">
+									{{title}} | {{date}}
 									{{#if isXola source}}
 										<div class="xola-custom xola-checkout" id="{{a_id}}">
-										    <button class="bookNowButton" value="{{a_id}}">Book Now</button>
+										    <button class="ui secondary button" id="bookNowButton" value="{{a_id}}">Book Now</button>
+										    <button class="ui button" id="deleteButton" value="{{w_id}}">
+										    	<i class="remove icon"></i>
+										    </button>
+											{{#if flag}}
+											<img align="right" class="warningSign" src="images/warning.png">
+											{{/if}}
 										</div>
 									{{/if}}
 
 									{{#if isStubHub source}}
 										<div id="{{a_id}}">
 										    <a href="http://www.stubhub.com/" target="_blank"><button>Book Now</button></a>
+										    <button class="ui button" id="deleteButton" value="{{w_id}}">
+										    	<i class="remove icon"></i>
+										    </button>
+											{{#if flag}}
+											<img align="right" class="warningSign" src="images/warning.png">
+											{{/if}}
 										</div>
 									{{/if}}
-									<div>
-										<button class="deleteButton" value="{{w_id}}">X</button>
-									</div>
+
 								</div>
 								<!-- Inner Card -->
 							</div>
