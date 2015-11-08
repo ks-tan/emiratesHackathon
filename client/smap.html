@@ -13,7 +13,7 @@
 					<!-- Outer Card -->
 					<div class = "ui fluid card" id = "outerCard">
 						<div class="content">
-							<div id = "locationHeader" class = "header"><h1> {{location}} </h1></div>
+							<div id = "locationHeader" class = "header"><h1>{{getSequence @index}} {{location}} </h1></div>
 							{{#each activities}}
 							<div class="ui divider"></div>
 								<div class = "meta"> {{title}} | {{date}} </div>
