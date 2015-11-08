@@ -23,7 +23,8 @@ getStubHubData= function(){
                 var id = String(eventData.id);
                 var name = eventData.name;
                 var desc = eventData.description;
-                var loc = eventData.venue.latitude + ", " + eventData.venue.longitude;
+                var lat = Number(eventData.venue.latitude)
+                var lng = Number(eventData.venue.longitude)
                 console.log(location);
                 var ticketPrice = "NA"
                 if (typeof eventData.ticketInfo !== "undefined") {
@@ -39,7 +40,8 @@ getStubHubData= function(){
                     source: "StubHub",
                     title: name,
                     description: desc,
-                    location: loc,
+                    latitude: lat,
+                    longitude: lng,
                     price: ticketPrice,
                     pictureUrl: pictureUrl
                 });

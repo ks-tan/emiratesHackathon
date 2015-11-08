@@ -9,9 +9,9 @@
 	      <p>{{markerInfo.description}}</p>
 	    </div>
 	    {{#if isXola markerInfo.source}}
-	    <div class="xola-custom xola-checkout" id={{markerInfo._id}}>
-		    <button class="bookNowButton">Book Now!</button>
-		</div>
+	    	<div class="xola-custom xola-checkout" id="4f2b1dcc536e864069000001">
+			    <button>Book Now</button>
+			</div>
 		{{/if}}
 	 </div>
 </template>
@@ -23,4 +23,8 @@
 <template name = "listModal">
 	<h1>List of Events</h1>
 	{{eventList}}
+	<h1> Tell us what is your mood now! </h1>
+	{{#each moods}}
+		<button class = 'chooseYourMood' value = {{this}}>{{this}}</button><br>
+	{{/each}}
 </template>

@@ -33,7 +33,8 @@ getXolaExperiences = function(url){
 				source: 'Xola',
 				title: name,
 				description: description,
-				location: location.lat + ", " + location.lng,
+                latitude: Number(location.lat),
+                longitude: Number(location.lng),
 				price: experience.price,
 				pictureUrl: photoUrl
 			});

@@ -5,6 +5,8 @@ Meteor.startup(function() {
 Template.home.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
     	var latLng = Geolocation.latLng();
+      Session.set('lat', latLng.lat);
+      Session.set('lng', latLng.lng);
 
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -12,9 +14,9 @@ Template.home.onCreated(function() {
 		   	map: map.instance
 		});
 
-		marker.addListener('click', function(event){
-			$("#yourMarker").modal("show");
-		});
+    $(".yourMood").on('click', function(event){
+      $("#yourMarker").modal("show");
+    });
 
       	google.maps.event.addListener(map.instance, 'click', function(event) {
       		showListModal(event);
@@ -24,9 +26,8 @@ Template.home.onCreated(function() {
 
       	Attractions.find().observe({
         	added: function (document) {
-        		var location = document.location;
-        		var lat = location.substring(0, location.indexOf(", "));
-        		var lng = location.substring(location.indexOf(" "));
+        		var lat = document.latitude;
+        		var lng = document.longitude;
         		var image = {
 				    url: 'images/happy.png',
 				    scaledSize: new google.maps.Size(100, 100),
