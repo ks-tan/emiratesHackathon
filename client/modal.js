@@ -4,12 +4,13 @@ Template.eventModal.helpers({
     	return Attractions.findOne(markerId);
     },
     isXola: function(source){
-    	console.log(source);
-    	return source === "Xola";
+    	console.log(source == "Xola");
+    	return source == "Xola";
     }
 });
 
-(function() {
+Template.eventModal.onRendered({ 
+	function() {
         var co=document.createElement("script");
         co.type="text/javascript";
         co.async=true;
