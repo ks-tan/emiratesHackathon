@@ -29,12 +29,21 @@
 	<h1 align='center'> How do you feel now? </h1>
 	<div style="width: 100%; display: table;">
 	    <div style="display: table-row">
-	    	{{#each moods}}
 				<div style="display: table-cell; padding: 10px">
-					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin-left: auto; margin-right: auto">{{this}}</button><br>
-					<img src="images/Happy_Dog.jpg" width="100%" height="20%">
+					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Fun</button><br><br><br>
+					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
+					<h1><i class='child icon' style='font-size:200px; color:red; margin-left: -5px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
 				</div>
-			{{/each}}
+				<div style="display: table-cell; padding: 10px">
+					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Romance</button><br><br><br>
+					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
+					<h1><i class='heart icon' style='font-size:188px; color:violet; margin-left: 4px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
+				</div>
+				<div style="display: table-cell; padding: 10px">
+					<button class = 'chooseYourMood' value = {{this}} style="position: absolute; margin: auto; display:inline-block; width:28%">Adventurous</button><br><br><br>
+					<!-- <img src="images/Happy_Dog.jpg" width="100%" height="20%"> -->
+					<h1><i class='send icon' style='font-size:170px; color:yellow; margin-left: 15px; margin-top: 40px; margin-bottom: -50px;'></i></h1>
+				</div>
 	    </div>
 	</div>
 </template>
