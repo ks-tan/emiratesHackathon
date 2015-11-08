@@ -20,6 +20,10 @@ Template.smap.helpers({
 			location: "California",
 			title: "blah blah",
 			date: undefined
+		},{
+			location: "New York",
+			title: "false flag",
+			date: "2015-11-03"
 		}]
 		// watchedEvent = Watchlist.find().fetch();
 		// for (var index in watchedEvent) {
@@ -79,6 +83,53 @@ Template.smap.helpers({
 			}
 			json.activities = acti;
 			newArr.push(json)
+		}
+		var latestLocDate = []
+		for (var i in newArr) {
+			var data = newArr[i];
+			tmp_acti = [];
+			for (var j in data.activities) {
+				var json = {}
+				json.date = data.activities[j].date;
+				json.title = data.activities[j].title;
+				tmp_acti.push(json)
+			}
+			tmp_acti.sort(function(a,b){
+				if (typeof a.date === "undefined" && typeof b.date === "undefined") {
+					return 0
+				}else if (typeof a.date === "undefined") {
+					return 1
+				}else if (typeof b.date === "undefined") {
+					return -1
+				}else {
+					var dateA = new Date(a.date);
+					var dateB = new Date(b.date);
+					return dateB-dateA
+				}
+			});
+			latestLocDate.push(tmp_acti[0].date)
+		}
+		console.log(latestLocDate)
+
+		for (i = 0; i < newArr.length - 1; i++) {
+			data = newArr[i+1];
+			compare_date = latestLocDate[i];
+			if (typeof compare_date === "undefined") {
+				continue
+			}else {
+				for (var j in data.activities) {
+					acti = data.activities[j]
+					if (typeof acti.date === "undefined") {
+						break
+					}else {
+						var dateA = new Date(compare_date);
+						var dateB = new Date(acti.date);
+						if (dateA - dateB >= 0) {
+							data.activities[j].flag = true
+						}
+					}
+				}
+			}
 		}
 		console.log(newArr);
 		return arr
