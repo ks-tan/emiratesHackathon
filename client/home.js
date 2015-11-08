@@ -5,6 +5,8 @@ Meteor.startup(function() {
 Template.home.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
     	var latLng = Geolocation.latLng();
+      Session.set('lat', latLng.lat);
+      Session.set('lng', latLng.lng);
 
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -14,7 +16,6 @@ Template.home.onCreated(function() {
 
     $(".yourMood").on('click', function(event){
       $("#yourMarker").modal("show");
-      $(".chooseYourMood").attr(latLng);
     });
 
       	// google.maps.event.addListener(map.instance, 'click', function(event) {

@@ -18,7 +18,8 @@
 </template>
 
 <template name = "yourModal">
+	<h1> Tell us what is your mood now! </h1>
 	{{#each moods}}
-		<button class = 'chooseYourMood'>{{this}}</button><br>
+		<button class = 'chooseYourMood' value = {{this}}>{{this}}</button><br>
 	{{/each}}
 </template>

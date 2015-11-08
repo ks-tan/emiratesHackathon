@@ -5,6 +5,29 @@ Template.flights.events({
   }
 });
 
+// the function below is the API call to skyscanner's browse quotes
+/***
+PARAM: an object of parameters. the object must have these properties (follow the exact name):
+	<(float)latitude,(float)longitude> origin
+	<(float)latitude,(float)longitude> destination
+	<(string OR date)> outboundDate // yyyy-MM-dd
+	<(string OR date)> inboundDate // yyyy-MM-dd
+
+RETURN: an object of necessary data. The properties are:
+	price // int
+	isDirectFlight // bool
+	outboundCarrier // string
+	outboundOrigin // string
+	outboundDestination // string
+	outboundDate // string or date (the format is "yyyy-MM-ddT00:00:00" so you can parse to date or keep it as string)
+	isRoundTrip // bool
+	inboundCarrier // string
+	inboundOrigin // string
+	inboundDestination // string
+	inboundDate // string or date (same as outboundDate)
+
+***/
+
 function onInputChange(input) {
 	input = validateInput(input);
 	Meteor.call("queryFlightAvailability", input, function(error, result){
