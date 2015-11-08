@@ -10,7 +10,7 @@
 	    })();
 	</script>
 	<div class = "ui one column grid">
-		{{#each locations}}
+		{{#each getWatchList}}
 			<div class = "column">
 				<!-- Outer Card -->
 				<div class = "ui fluid card">
@@ -24,6 +24,12 @@
 									{{#if isXola source}}
 										<div class="xola-custom xola-checkout" id="{{a_id}}">
 										    <button>Book Now</button>
+										</div>
+									{{/if}}
+
+									{{#if isStubHub source}}
+										<div id="{{a_id}}">
+										    <a href="http://www.stubhub.com/" target="_blank"><button>Book Now</button></a>
 										</div>
 									{{/if}}
 									<div>

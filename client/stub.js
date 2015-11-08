@@ -5,8 +5,5 @@ Template.smap.helpers({
 		var location3 = {location: "location3", activities: [{title: "title3.1", date: "date3.1", a_id: "a3.1", w_id: "w3.1", source: "Xola"}, {title: "title3.2", date: "date3.2", a_id: "a3.2", w_id: "w2.3", source: "Xola"}]};
 		var locations = [location1, location2, location3]
 		return locations;
-	},
-	isXola: function(source) {
-		return source == "Xola"
 	}
 })

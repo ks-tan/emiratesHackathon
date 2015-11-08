@@ -1,45 +1,20 @@
 Template.smap.helpers({
 	getWatchList: function(){
-		var arr = [{
-			location: "New York",
-			title: "blah blah NY 1",
-			date: "2015-11-01"
-		},{
-			location: "New York",
-			title: "blah blah NY 2",
-			date: "2015-11-02"
-		},{
-			location: "California",
-			title: "blah blah CA flag",
-			date: "2015-11-02"
-		},{
-			location: "California",
-			title: "blah blah CA",
-			date: "2015-10-30"
-		},{
-			location: "California",
-			title: "blah blah",
-			date: undefined
-		},{
-			location: "New York",
-			title: "false flag",
-			date: "2015-11-03"
-		}]
-		// watchedEvent = Watchlist.find().fetch();
-		// for (var index in watchedEvent) {
-		// 	var currItem = watchedEvent[index];
-		// 	var currId = currItem.attractionId;
-		// 	var currEvent = Attractions.findOne(currId);
-		// 	var json = {};
-		//	json.source = currEvent.source;
-		// 	json.w_id = currItem._id;
-		// 	json.a_id = currId;
-		// 	json.date = currEvent.date;
-		// 	json.title = currEvent.title;
-		// 	json.location = currItem.state;
-		// 	arr.push(json);	
-		// 	console.log(arr)
-		// }
+		var arr = []
+		watchedEvent = Watchlist.find().fetch();
+		for (var index in watchedEvent) {
+			var currItem = watchedEvent[index];
+			var currId = currItem.attractionId;
+			var currEvent = Attractions.findOne(currId);
+			var json = {};
+			json['source'] = currEvent.source;
+			json.w_id = currItem._id;
+			json.a_id = currId;
+			json.date = currEvent.date;
+			json.title = currEvent.title;
+			json.location = currItem.state;
+			arr.push(json);	
+		}
 		arr.sort(function(a,b){
 			if (typeof a.date === "undefined" && typeof b.date === "undefined") {
 				return 0
@@ -76,6 +51,7 @@ Template.smap.helpers({
 					acti_json.a_id = data.a_id;
 					acti_json.date = data.date;
 					acti_json.flag = false;
+					acti_json.source = data.source;
 					acti.push(acti_json);
 				}else {
 					continue
@@ -109,7 +85,6 @@ Template.smap.helpers({
 			});
 			latestLocDate.push(tmp_acti[0].date)
 		}
-		console.log(latestLocDate)
 
 		for (i = 0; i < newArr.length - 1; i++) {
 			data = newArr[i+1];
@@ -132,6 +107,20 @@ Template.smap.helpers({
 			}
 		}
 		console.log(newArr);
-		return arr
+		return newArr
+	},
+	isXola: function(source) {
+		return source == "Xola"
+	},
+
+	isStubHub: function(source) {
+		return source == "StubHub"
+	}
+})
+
+Template.smap.events({
+	'click .deleteButton': function(event){
+        var id = event.target.value;
+        Watchlist.remove(id);
 	}
 })

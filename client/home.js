@@ -26,7 +26,7 @@ Template.home.onCreated(function() {
       		showListModal(event);
       	});
 
-        map.instance.setOptions({ minZoom: 4, maxZoom: 5 });
+        map.instance.setOptions({ minZoom: 4, maxZoom: 15 });
 
       	var markers = {};
 
@@ -34,11 +34,14 @@ Template.home.onCreated(function() {
         	added: function (document) {
         		var lat = document.latitude;
         		var lng = document.longitude;
+            var mood = document.mood;
         		var image = {
-				    url: 'images/happy.png',
-				    scaledSize: new google.maps.Size(100, 100),
-				    origin: new google.maps.Point(0, 0),
-				};
+  				    url: 'images/happy.png',
+  				    scaledSize: new google.maps.Size(100, 100),
+  				    origin: new google.maps.Point(0, 0),
+				    };
+
+
           		var marker = new google.maps.Marker({
             		//draggable: true,
             		//animation: google.maps.Animation.DROP,

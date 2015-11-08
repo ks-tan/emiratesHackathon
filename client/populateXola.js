@@ -16,6 +16,18 @@ getXolaExperiences = function(url){
 		var experiences = json.data
 
 		for (x in experiences) {
+
+			//randomise emotions
+			var randomNum = Math.floor((Math.random() * 3) + 1);
+			var mood;
+			if (randomNum == 1){
+				mood = "happy";
+			} else if (randomNum == 2){
+				mood = "love";
+			} else if (randomNum == 3){
+				mood = "nature";
+			}
+
 			var experience = experiences[x]
 			var name = experience.name
 			var description = experience.desc
@@ -37,7 +49,8 @@ getXolaExperiences = function(url){
                 latitude: Number(location.lat),
                 longitude: Number(location.lng),
 				price: experience.price,
-				pictureUrl: photoUrl
+				pictureUrl: photoUrl,
+				mood: mood
 			});
 
 			getXolaDateAndTime(experience.id);
