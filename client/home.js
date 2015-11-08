@@ -19,10 +19,6 @@ Template.home.onCreated(function() {
       $("#yourMarker").modal("show");
     });
 
-    $("#openMenu").on('click', function(event){
-      $('.ui.sidebar').sidebar('toggle');
-    });
-
       	google.maps.event.addListener(map.instance, 'click', function(event) {
       		showListModal(event);
       	});

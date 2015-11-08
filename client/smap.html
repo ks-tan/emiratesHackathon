@@ -23,7 +23,7 @@
 									<p>{{title}} | {{date}} </p>
 									{{#if isXola source}}
 										<div class="xola-custom xola-checkout" id="{{a_id}}">
-										    <button>Book Now</button>
+										    <button class="bookNowButton" value="{{a_id}}">Book Now</button>
 										</div>
 									{{/if}}
 
@@ -46,4 +46,12 @@
 			</div>
 		{{/each}}
 	</div>
+	<div id = "yourMarker" class = "ui modal">
+		{{> yourModal}}
+	</div>
+	<script type="text/javascript">
+		$(".yourMood").on('click', function(event){
+	      	$("#yourMarker").modal("show");
+	    });
+	</script>
 </template>
