@@ -1,4 +1,4 @@
-Template.page2.events({
+Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
     createLiveFlightSession(a);
@@ -76,7 +76,7 @@ RETURN: an object of necessary data. The properties are:
 
 ***/
 
-function onInputChange(input) {
+function queryFlightAvailability(input) {
 	input = validateInput(input);
 	Meteor.call("queryFlightAvailability", input, function(error, result){
 		if (error) {
@@ -165,3 +165,19 @@ function validateInput(input) {
 }
 
 
+Template.flights.helpers({
+	roundTrip: function () {
+		return true;
+	},
+	search: function() {
+		var dateDepart = new Date();
+		var dateReturn = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+
+		console.log(dateDepart);
+		console.log(dateReturn);
+		var currLat = Session.get('lat');
+        var currLng = Session.get('lng');
+        
+        var input = [{}];
+	}
+});

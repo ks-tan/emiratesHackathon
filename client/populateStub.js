@@ -34,6 +34,9 @@ getStubHubData= function(){
                 if (typeof eventData.imageUrl !== "undefined") {
                     pictureUrl = eventData.imageUrl
                 }
+                var datetime = eventData.eventDateLocal;
+                var date = datetime.substring(0, 10);
+                var time = datetime.substring(11, 19);
 
                 Attractions.insert({
                     _id: id,
@@ -43,7 +46,9 @@ getStubHubData= function(){
                     latitude: lat,
                     longitude: lng,
                     price: ticketPrice,
-                    pictureUrl: pictureUrl
+                    pictureUrl: pictureUrl,
+                    date: date,
+                    time: time
                 });
             }
         }

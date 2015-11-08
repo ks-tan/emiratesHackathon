@@ -8,12 +8,13 @@
 	      <div class="ui header">MOOD HERE</div>
 	      <p>{{markerInfo.description}}</p>
 	    </div>
-	    {{#if isXola markerInfo.source}}
-	    	<div class="xola-custom xola-checkout" id="4f2b1dcc536e864069000001">
-			    <button>Book Now</button>
-			</div>
-		{{/if}}
-	 </div>
+	    {{#if isInWatchlist markerInfo._id}}
+	    <button disabled>SMapped</button>
+	    {{else}}
+	    <button id="smapButton" value={{markerInfo._id}} >SMap it!</button>
+	    {{/if}}
+	 </div> 
+	 {{>flights}}
 </template>
 
 <template name = "yourModal">
@@ -36,13 +37,12 @@
 					<div class = "header">
 						{{title}}
 					</div>
-				</div>			
+				</div>
+				<div class="ui bottom attached button" id = "findOutMoreButton">
+			      	Find Out More
+			    </div>		
 			</div>
 		</div>
 		{{/each}}
 	</div>
-	<h1> Tell us what is your mood now! </h1>
-	{{#each moods}}
-		<button class = 'chooseYourMood' value = {{this}}>{{this}}</button><br>
-	{{/each}}
 </template>

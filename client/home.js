@@ -5,8 +5,8 @@ Meteor.startup(function() {
 Template.home.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
     	var latLng = Geolocation.latLng();
-      Session.set('lat', latLng.lat);
-      Session.set('lng', latLng.lng);
+      Session.set('my_lat', latLng.lat);
+      Session.set('my_lng', latLng.lng);
 
     	var marker = new google.maps.Marker({
 		   	position: new google.maps.LatLng(latLng.lat, latLng.lng),
