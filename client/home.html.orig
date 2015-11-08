@@ -20,8 +20,12 @@
 	<div id = "yourMarker" class = "ui modal">
 		{{> yourModal}}
 	</div>
+<<<<<<< HEAD
+=======
+
 	<div id = "listModal" class = "ui modal">
 		{{> listModal}}
 	</div>
 
+>>>>>>> 21467ae24aa182ad7cded64fc754676cf2452f73
 </template>

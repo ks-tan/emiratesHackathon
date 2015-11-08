@@ -18,9 +18,9 @@ Template.home.onCreated(function() {
       $("#yourMarker").modal("show");
     });
 
-      	// google.maps.event.addListener(map.instance, 'click', function(event) {
-       //  	Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
-      	// });
+      	google.maps.event.addListener(map.instance, 'click', function(event) {
+      		showListModal(event);
+      	});
 
       	var markers = {};
 
@@ -30,7 +30,7 @@ Template.home.onCreated(function() {
         		var lng = document.longitude;
         		var image = {
 				    url: 'images/happy.png',
-				    scaledSize: new google.maps.Size(50, 50),
+				    scaledSize: new google.maps.Size(100, 100),
 				    origin: new google.maps.Point(0, 0),
 				};
           		var marker = new google.maps.Marker({
@@ -48,9 +48,12 @@ Template.home.onCreated(function() {
 	          	// });
 
 	          	//click event marker
-	          	marker.addListener('click', function(event) {
-					Session.set('markerId', marker.id);
-					$("#eventMarker").modal("show");
+	          	//marker.addListener('click', function(event) {
+				// 	Session.set('markerId', marker.id);
+				// 	$("#eventMarker").modal("show");
+				// });
+				marker.addListener('click', function(event) {
+					showListModal(event);
 				});
 
           		markers[document._id] = marker;
@@ -73,8 +76,16 @@ Template.home.helpers({
  	    if (GoogleMaps.loaded() && latLng) {
 	        return {
         		center: new google.maps.LatLng(latLng.lat, latLng.lng),
-	          	zoom: 4
+	          	zoom: 5
 	        };
 	    }
     }
 });
+
+function showListModal(event){
+	var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    Session.set("lat", lat);
+    Session.set("lng", lng);
+    $("#listModal").modal("show");
+}
