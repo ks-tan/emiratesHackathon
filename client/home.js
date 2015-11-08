@@ -30,8 +30,9 @@ Template.home.onCreated(function() {
       var infowindow1 = new google.maps.InfoWindow({
         content: 
           "<h1>Dakota</h1>" + 
+          "<p><i class='send icon'></i>Adventure: 60%</p>" +
           "<p><i class='child icon'></i>Fun: 30%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
+          "<p><i class='heart icon'></i>Romantic: 10%</p>"
           "<p><i class='send icon'></i>Adventure: 60%</p>" +
           "<button class='ui secondary button' onclick='showListModal(43.544596, -96.731103)'>Show Events</button>"
       });
@@ -47,8 +48,9 @@ Template.home.onCreated(function() {
       var infowindow2 = new google.maps.InfoWindow({
         content: 
           "<h1>Texas</h1>" + 
+          "<p><i class='send icon'></i>Adventure: 70%</p>" +
           "<p><i class='child icon'></i>Fun: 20%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
+          "<p><i class='heart icon'></i>Romantic: 10%</p>"  
           "<p><i class='send icon'></i>Adventure: 70%</p>" +
           "<button class='ui secondary button' onclick='showListModal(30.267153, -97.743061)'>Show Events</button>"
       });
@@ -108,16 +110,20 @@ Template.home.onCreated(function() {
             var image;
             if (randomNum == 1) {
               mood = "fun";
+              image = "http://www.google.com/mapfiles/ms/micons/ylw-pushpin.png"
             } else if (randomNum == 2) {
               mood = "romantic";
+              image = "http://www.google.com/mapfiles/ms/micons/pink-pushpin.png"
             } else if (randomNum == 3){
               mood = "adventure";
+              image = "http://www.google.com/mapfiles/ms/micons/blue-pushpin.png"
             }
         		var lat = document.latitude;
         		var lng = document.longitude;
+
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    scaledSize: new google.maps.Size(65, 65),
+  				    scaledSize: new google.maps.Size(40, 40),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
@@ -128,7 +134,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.08,
+            		opacity: 0.3,
             		id: document._id
           		});
 
