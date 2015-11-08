@@ -20,6 +20,20 @@ getStubHubData= function(){
                 if (typeof eventData.id === "undefined" || eventData.id == "" || typeof Attractions.findOne({_id: String(eventData.id)}) !== "undefined") {
                 	continue
                 }
+
+                //randomise emotions
+                var randomNum = Math.floor((Math.random() * 4) + 1);
+                var mood;
+                if (randomNum == 1){
+                    mood = "happy";
+                } else if (randomNum == 2){
+                    mood = "love";
+                } else if (randomNum == 3){
+                    mood = "nature";
+                } else {
+                    mood = "adventure";
+                }
+
                 var id = String(eventData.id);
                 var name = eventData.name;
                 var desc = eventData.description;
@@ -48,7 +62,8 @@ getStubHubData= function(){
                     price: ticketPrice,
                     pictureUrl: pictureUrl,
                     date: date,
-                    time: time
+                    time: time,
+                    mood: mood
                 });
             }
         }
