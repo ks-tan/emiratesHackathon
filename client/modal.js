@@ -11,8 +11,8 @@ Template.eventModal.helpers({
 
 Template.listModal.helpers({
     eventList: function() {
-        var lat = Session.get("lat");
-        var lng = Session.get("lng");
+        var lat = Session.get("my_lat");
+        var lng = Session.get("my_lng");
         return lat + ", " + lng;
     }
 });
