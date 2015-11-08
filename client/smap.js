@@ -119,7 +119,8 @@ Template.smap.helpers({
 })
 
 Template.smap.events({
-	'click .deleteButton': function(event){
+	'click #deleteButton': function(event){
+		console.log("delete but");
         var id = event.target.value;
         Watchlist.remove(id);
 	},

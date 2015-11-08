@@ -9,17 +9,23 @@
 	        s.parentNode.insertBefore(co, s);
 	    })();
 	</script>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class = "ui one column grid">
 		{{#each getWatchList}}
 			<div class = "column">
 				<!-- Outer Card -->
-				<div class = "ui fluid card">
-					<b><u><p>{{location}}</p></u></b>
+				<div class = "ui fluid card" id = "outerCard">
+					<b><p>{{location}}</p></b>
 					<div class = "ui one column grid">
 						{{#each activities}}
 							<div class = "column">
 								<!-- Inner Card -->
-								<div class = "ui fluid card">
+								<div class = "ui fluid card" id = "innerCard">
 									<p>{{title}} | {{date}} </p>
 									{{#if isXola source}}
 										<div class="xola-custom xola-checkout" id="{{a_id}}">
@@ -33,7 +39,7 @@
 										</div>
 									{{/if}}
 									<div>
-										<button class="deleteButton" value="{{w_id}}">X</button>
+										<i class="remove icon" id="deleteButton" value="{{w_id}}"></i>
 									</div>
 								</div>
 								<!-- Inner Card -->
