@@ -17,7 +17,8 @@ Template.eventModal.onRendered({
         co.src="https://xola.com/checkout.js";
         var s=document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(co, s);
-    })();
+    }
+});
 
 Template.yourModal.helpers({
     moods: function() {

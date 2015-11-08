@@ -11,8 +11,9 @@ Meteor.methods({
     'populateStubHub': function(){
     	this.unblock();
         records = [];
-        // These states have been populated: "AL","AK", "AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD", "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND", "OH","OK","OR",
-        var states= ["PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
+        //var states= ["AL","AK", "AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA"];
+        var states= ["ME","MD", "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND", "OH","OK","OR"];
+        //var states= ["PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
         for (var index in states) {
             state = states[index];
             var StubHubData = Meteor.http.call("GET", "https://api.stubhub.com/search/catalog/events/v3?status=active |contingent&country=US&state=" + state + "&locale=en_US&sort=eventDateLocal desc&rows=100", {
