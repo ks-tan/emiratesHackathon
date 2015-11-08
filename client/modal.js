@@ -3,11 +3,22 @@ Template.eventModal.helpers({
     	var markerId = Session.get('markerId');
     	return Attractions.findOne(markerId);
     },
-    isXola: function(source){
-    	console.log(source == "Xola");
-    	return source == "Xola";
+    isInWatchlist: function() {
+        var watchlist = Watchlist.findOne({_id: Attractions.findOne(markerId).id});
+        return typeof watchlist !== "undefined" ? "disabled" : ""
     }
 });
+
+Template.eventModal.events({
+    'click #smapButton': function(event) {
+        var id = event.target.value;
+        Watchlist.insert({
+            attractionId: id
+        });
+        $("#smapButton").attr('disabled','disabled');
+        $("#smapButton").text('SMapped');
+    }
+})
 
 Template.listModal.helpers({
     eventList: function() {
@@ -25,7 +36,7 @@ Template.listModal.helpers({
 });
 
 Template.listModal.events({
-    'click #smapButton': function() {
+    'click #findOutMoreButton': function() {
         Session.set('markerId', this._id);
         $("#eventMarker").modal("show");
     }

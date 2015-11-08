@@ -8,7 +8,7 @@
 	      <div class="ui header">MOOD HERE</div>
 	      <p>{{markerInfo.description}}</p>
 	    </div>
-	    <button class="smapButton" value={{markerInfo._id}}>SMap it!</button>
+	    <button id="smapButton" value={{markerInfo._id}} {{isInWatchlist}}>SMap it!</button>
 	 </div> 
 	 {{>flights}}
 </template>
@@ -34,8 +34,8 @@
 						{{title}}
 					</div>
 				</div>
-				<div class="ui bottom attached button" id = "smapButton">
-			      	SmapIt!
+				<div class="ui bottom attached button" id = "findOutMoreButton">
+			      	Find Out More
 			    </div>		
 			</div>
 		</div>
