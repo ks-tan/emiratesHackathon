@@ -6,13 +6,13 @@
 	    </div>
 	    <div class="description">
 	      <div class="ui header">MOOD HERE</div>
-	      <p>{{markerInfo.description}}</p>
-		    {{#if isInWatchlist markerInfo._id}}
-		    <button disabled>SMapped</button>
-		    {{else}}
-		    <button id="smapButton" value={{markerInfo._id}} >SMap it!</button>
-		    {{/if}}
+	      <p>{{markerInfo.description}}</p>    
 	    </div>
+	    {{#if isInWatchlist markerInfo._id}}
+	    <button disabled>SMapped</button>
+	    {{else}}
+	    <button id="smapButton" value={{markerInfo._id}} >SMap it!</button>
+	    {{/if}}
 	 </div> 
 	 {{>flights}}
 </template>
