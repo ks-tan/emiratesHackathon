@@ -15,7 +15,7 @@ Router.route('page1',{
 });
 
 Router.route('page2',{
-	template: 'page2'
+	template: 'flights'
 });
 
 Router.route('page3',{
