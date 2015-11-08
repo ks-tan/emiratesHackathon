@@ -12,8 +12,26 @@ Template.eventModal.helpers({
 Template.eventModal.events({
     'click #smapButton': function(event) {
         var id = event.target.value;
-        Watchlist.insert({
-            attractionId: id
+        var currEvent = Attractions.findOne(id);
+        var lat = currEvent.latitude.toString();
+        var lng = currEvent.longitude.toString();
+        Meteor.call('getLocation', lat, lng, function(err, data){
+            if (typeof err != "undefined") {
+                console.log(err);
+                return
+            }
+            var tmp = data.results[0].address_components
+            for (var i in tmp) {
+                if (tmp[i].types[0] == "administrative_area_level_1") {
+                    loc = tmp[i].long_name;
+                    console.log(loc);
+                    break
+                }
+            }
+            Watchlist.insert({
+                attractionId: id,
+                state: loc
+            });
         });
         $("#smapButton").attr('disabled','disabled');
         $("#smapButton").text('SMapped');

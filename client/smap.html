@@ -1,2 +1,5 @@
-<!-- <template name = "smap">
-</template> -->
+<template name = "smap">
+	{{#each getWatchList}}
+		<p>{{this.loc}}</p><p>{{title}}</p><p>{{date}}</p><br>
+	{{/each}}
+</template>
