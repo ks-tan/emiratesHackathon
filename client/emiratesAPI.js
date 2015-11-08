@@ -15,11 +15,11 @@ Template.flights.events({
 ***/
 
 function requestLiveFlight(input) {
-	if (input.data.Status == "UpdatesComplete") {
+	if (input.data != undefined && input.data.Status == "UpdatesComplete") {
 		// finish recursion
 		return;
 	} else {
-		Meteor.call("pollSession", result.headers.location, function (error, result){
+		Meteor.call("pollSession", input, function (error, result){
 				if (error) {
 					console.log(error);
 				} else {
@@ -40,6 +40,7 @@ function createLiveFlightSession(input) {
 		} else {
 			console.log(result);
 			console.log(result.headers.location);
+			requestLiveFlight(result.headers.location);
 			
 		}
 	});
