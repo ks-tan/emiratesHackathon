@@ -1,7 +1,7 @@
 Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
-    onInputChange(a);
+    queryFlightAvailability(a);
   },
 });
 
@@ -28,19 +28,20 @@ RETURN: an object of necessary data. The properties are:
 
 ***/
 
-function onInputChange(input) {
+function queryFlightAvailability(input) {
 	input = validateInput(input);
+	var resultQuotes = [];
 	Meteor.call("queryFlightAvailability", input, function(error, result){
 		if (error) {
 			console.log(error);
 		} else {
-			var resultQuotes = [];
+			//var resultQuotes = [];
 			for (var i = result.data.Quotes.length - 1; i >= 0; i--) {
 				var quote = result.data.Quotes[i];
 				var outboundLeg = quote.OutboundLeg;
 				var outboundCarrier = carrierNameLookup(outboundLeg.CarrierIds[0], result.data.Carriers);
 				var outboundOrigin = placeNameLookup(outboundLeg.OriginId, result.data.Places);
-				var outboundDestination = placeNameLookup(outboundLeg.OriginId, result.data.Places);
+				var outboundDestination = placeNameLookup(outboundLeg.DestinationId, result.data.Places);
 				var outboundDate = outboundLeg.DepartureDate;
 
 				if (quote.InboundLeg != undefined) {
@@ -48,8 +49,8 @@ function onInputChange(input) {
 					var inboundLeg = quote.InboundLeg;
 					var inboundCarrier = carrierNameLookup(inboundLeg.CarrierIds[0], result.data.Carriers);
 					var inboundOrigin = placeNameLookup(inboundLeg.OriginId, result.data.Places);
-					var inboundDestination = placeNameLookup(inboundLeg.OriginId, result.data.Places);
-					var inboundDate = outboundLeg.DepartureDate;
+					var inboundDestination = placeNameLookup(inboundLeg.DestinationId, result.data.Places);
+					var inboundDate = inboundLeg.DepartureDate;
 
 				} else {
 					var isRoundTrip = false;
@@ -64,15 +65,16 @@ function onInputChange(input) {
 					outboundCarrier: outboundCarrier, // string
 					outboundOrigin: outboundOrigin, // string
 					outboundDestination: outboundDestination, // string
-					outboundDate: outboundDate, // string or date
+					outboundDate: outboundDate.substring(0,10), // string or date
 					isRoundTrip: isRoundTrip, // bool
 					inboundCarrier: inboundCarrier, // string
 					inboundOrigin: inboundOrigin, // string
 					inboundDestination: inboundDestination, // string
-					inboundDate: inboundDate, // string or date
+					inboundDate: inboundDate.substring(0,10) // string or date
 				});
 			};
 			console.log(resultQuotes);
+        	Session.set("flightSearchResults", resultQuotes);
 		}
 	});
 }
@@ -98,35 +100,63 @@ function placeNameLookup(placeId, placeArray) {
 }
 
 function validateInput(input) {
-	if (input.origin == undefined || input.origin == null) {
+	if (input.origin == undefined || input.origin == null || isNaN(input.origin)) {
 		input.origin = "37.678,-122.452"; // sf latlong lol
 	}
-	if (input.destination == undefined || input.destination == null) {
+	if (input.destination == undefined || input.destination == null || isNaN(input.destination)) {
 		input.destination = "anywhere";
 	}
-	if (input.outboundDate == undefined || input.outboundDate ==null) {
+	if (input.outboundDate == undefined || input.outboundDate == null) {
 		input.outboundDate = "anytime";
 	}
-	if (input.inboundDate = undefined || input.inboundDate == null) {
+	if (input.inboundDate == undefined || input.inboundDate == null) {
 		input.inboundDate = "anytime";
 	}
 	return input;
 }
 
+function validateLatLng(input) {
+	if (input == undefined || input == null || isNaN(input)) {
+		return null;			
+	} 
+}
+
+function formatDate(date) {
+	var dd = date.getDate();
+	var mm = date.getMonth()+1; //January is 0!
+	var yyyy = date.getFullYear();
+
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+
+	if(mm<10) {
+	    mm='0'+mm
+	}
+
+	return yyyy+'-'+mm+'-'+dd; 
+}
 
 Template.flights.helpers({
-	roundTrip: function () {
-		return true;
-	},
 	search: function() {
-		var dateDepart = new Date();
-		var dateReturn = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+		var dateDepart = formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000));
+		var dateReturn = formatDate(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000));
+		var currLat = validateLatLng(Number(Session.get('my_lat')));
+        var currLng = validateLatLng(Number(Session.get('my_lng')));
+        var eventLat = validateLatLng(Number(Session.get('lat')));
+ 		var eventLng = validateLatLng(Number(Session.get('lng')));
 
-		console.log(dateDepart);
-		console.log(dateReturn);
-		var currLat = Session.get('lat');
-        var currLng = Session.get('lng');
-        
-        var input = [{}];
+ 		console.log(eventLng);
+ 		console.log(eventLat);
+        var input = {
+        	"origin": ""+currLat+","+currLng,
+        	"destination": ""+eventLat+","+eventLng,
+        	"outboundDate": ""+dateDepart,
+        	"inboundDate": ""+dateReturn
+        };
+        input = validateInput(input);
+        console.log(input); 
+      	queryFlightAvailability(input);
+      	return Session.get("flightSearchResults");
 	}
 });
