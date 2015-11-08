@@ -52,8 +52,8 @@ Template.yourModal.helpers({
 Template.yourModal.events({
     'click .chooseYourMood': function(event) {
         var mood = event.target.value;
-        var lat = Number(Session.get('lat'));
-        var lng = Number(Session.get('lng'));
+        var lat = Number(Session.get('my_lat'));
+        var lng = Number(Session.get('my_lng'));
         Markers.insert({
             latitude: lat,
             longitude: lng,

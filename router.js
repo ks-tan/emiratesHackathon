@@ -15,7 +15,7 @@ Router.route('smap',{
 });
 
 Router.route('page2',{
-	template: 'page2'
+	template: 'flights'
 });
 
 Router.route('page3',{
