@@ -38,17 +38,17 @@ Template.home.onCreated(function() {
             var mood;
             var image;
             if (randomNum == 1) {
-              mood = "fun_icon";
+              mood = "fun";
             } else if (randomNum == 2) {
-              mood = "romantic_icon";
+              mood = "romantic";
             } else if (randomNum == 3){
-              mood = "adventure_icon";
+              mood = "adventure";
             }
         		var lat = document.latitude;
         		var lng = document.longitude;
         		var image = {
   				    url: 'images/'+mood+'.png',
-  				    // scaledSize: new google.maps.Size(75, 75),
+  				    scaledSize: new google.maps.Size(65, 65),
   				    origin: new google.maps.Point(0, 0),
 				    };
 
