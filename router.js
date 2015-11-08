@@ -33,3 +33,7 @@ Router.route('populateXola', {
 Router.route('populateStub', {
 	template: 'populateStub'
 });
+
+Router.route('bookFlight', {
+	template: 'bookFlight'
+});
