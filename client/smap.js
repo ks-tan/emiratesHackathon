@@ -122,5 +122,9 @@ Template.smap.events({
 	'click .deleteButton': function(event){
         var id = event.target.value;
         Watchlist.remove(id);
+	},
+	'click .bookNowButton': function(event) {
+		Session.set('attractionId', event.target.value);
+		Router.go('checkout')
 	}
 })

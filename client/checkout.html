@@ -1,0 +1,15 @@
+<template name = "checkout">
+	<script type="text/javascript">
+	    (function() {
+	        var co=document.createElement("script");
+	        co.type="text/javascript";
+	        co.async=true;
+	        co.src="https://xola.com/checkout.js";
+	        var s=document.getElementsByTagName("script")[0];
+	        s.parentNode.insertBefore(co, s);
+	    })();
+	</script>
+	<div class="xola-custom xola-checkout" id="{{attractionId}}">
+		<button class="checkoutButton">Checkout</button>
+	</div>
+</template>
