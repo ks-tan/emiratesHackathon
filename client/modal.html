@@ -8,7 +8,12 @@
 	      <div class="ui header">MOOD HERE</div>
 	      <p>{{markerInfo.description}}</p>
 	    </div>
-	  </div>
+	    {{#if isXola markerInfo.source}}
+	    <div class="xola-custom xola-checkout" id={{markerInfo._id}}>
+		    <button class="bookNowButton">Book Now!</button>
+		</div>
+		{{/if}}
+	 </div>
 </template>
 
 <template name = "yourModal">
