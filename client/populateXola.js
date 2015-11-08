@@ -18,7 +18,7 @@ getXolaExperiences = function(url){
 		for (x in experiences) {
 
 			//randomise emotions
-			var randomNum = Math.floor((Math.random() * 4) + 1);
+			var randomNum = Math.floor((Math.random() * 3) + 1);
 			var mood;
 			if (randomNum == 1){
 				mood = "happy";
@@ -26,8 +26,6 @@ getXolaExperiences = function(url){
 				mood = "love";
 			} else if (randomNum == 3){
 				mood = "nature";
-			} else {
-				mood = "adventure";
 			}
 
 			var experience = experiences[x]
