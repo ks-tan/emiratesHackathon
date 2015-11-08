@@ -83,6 +83,9 @@ Template.yourModal.events({
         var editText = $("#romanceValue").text();
         var num = Number(editText.substring(editText.indexOf(" "),editText.indexOf("%"))) + 5;
         $("#romanceValue").html("<i class='heart icon'></i>Romantic: " + num + "%");
+        var editText = $("#adventureValue").text();
+        var num = Number(editText.substring(editText.indexOf(" "),editText.indexOf("%"))) - 5;
+        $("#adventureValue").html("<i class='send icon'></i>Adventure: " + num + "%");
     }
 })
 
