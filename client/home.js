@@ -80,7 +80,7 @@ Template.home.onCreated(function() {
           "<h1>San Francisco</h1>" + 
           "<p><i class='child icon'></i>Fun: 30%</p>" + 
           "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
-          "<p><i class='send icon'></i>Adventure: 10%</p>"  
+          "<p id='adventureValue'><i class='send icon'></i>Adventure: 10%</p>"  
       });
       infowindow4.open(map,marker4);
 
@@ -103,13 +103,17 @@ Template.home.onCreated(function() {
             var image;
             if (randomNum == 1) {
               mood = "fun";
+              image = "http://www.google.com/mapfiles/ms/micons/ylw-pushpin.png"
             } else if (randomNum == 2) {
               mood = "romantic";
+              image = "http://www.google.com/mapfiles/ms/micons/pink-pushpin.png"
             } else if (randomNum == 3){
               mood = "adventure";
+              image = "http://www.google.com/mapfiles/ms/micons/blue-pushpin.png"
             }
         		var lat = document.latitude;
         		var lng = document.longitude;
+
         		var image = {
   				    url: 'images/'+mood+'.png',
   				    scaledSize: new google.maps.Size(40, 40),
