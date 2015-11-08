@@ -24,3 +24,17 @@ Template.yourModal.helpers({
         return moodsList
     }
 })
+
+Template.yourModal.events({
+    'click .chooseYourMood': function(event) {
+        var mood = event.target.value;
+        var lat = Session.get('lat');
+        var lng = Session.get('lng');
+        Markers.insert({
+            latitude: lat,
+            longitude: lng,
+            mood: mood
+        });
+        $("#yourMarker").modal("hide");
+    }
+})
