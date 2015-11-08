@@ -1,8 +1,8 @@
-Template.page2.events({
+Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
     onInputChange(a);
-  }
+  },
 });
 
 // the function below is the API call to skyscanner's browse quotes
@@ -114,3 +114,19 @@ function validateInput(input) {
 }
 
 
+Template.flights.helpers({
+	roundTrip: function () {
+		return true;
+	},
+	search: function() {
+		var dateDepart = new Date();
+		var dateReturn = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+
+		console.log(dateDepart);
+		console.log(dateReturn);
+		var currLat = Session.get('lat');
+        var currLng = Session.get('lng');
+        
+        var input = [{}];
+	}
+});
