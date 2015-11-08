@@ -146,6 +146,15 @@ Template.smap.helpers({
 	},
 	isResultsAvailable: function() {
 		return Object.keys(Session.get("flightSearchResults")).length != 0;
+	},
+	getSequence: function(index) {
+		if (index + 1 == 1) {
+			return "1st Destination: ";
+		} else if (index + 1 == 2) {
+			return "2nd Destination: ";
+		} else {
+			return (index + 1) + "rd Destination: ";
+		}
 	}
 })
 
