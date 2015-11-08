@@ -30,9 +30,10 @@ Template.home.onCreated(function() {
       var infowindow1 = new google.maps.InfoWindow({
         content: 
           "<h1>Dakota</h1>" + 
+          "<p><i class='send icon'></i>Adventure: 60%</p>" +
           "<p><i class='child icon'></i>Fun: 30%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<p><i class='send icon'></i>Adventure: 60%</p>"  
+          "<p><i class='heart icon'></i>Romantic: 10%</p>"
+           
       });
       infowindow1.open(map,marker1);
 
@@ -46,9 +47,9 @@ Template.home.onCreated(function() {
       var infowindow2 = new google.maps.InfoWindow({
         content: 
           "<h1>Texas</h1>" + 
+          "<p><i class='send icon'></i>Adventure: 70%</p>" +
           "<p><i class='child icon'></i>Fun: 20%</p>" + 
-          "<p><i class='heart icon'></i>Romantic: 10%</p>" +
-          "<p><i class='send icon'></i>Adventure: 70%</p>"  
+          "<p><i class='heart icon'></i>Romantic: 10%</p>"  
       });
       infowindow2.open(map,marker2);
 
@@ -78,8 +79,8 @@ Template.home.onCreated(function() {
       var infowindow4 = new google.maps.InfoWindow({
         content: 
           "<h1>San Francisco</h1>" + 
-          "<p><i class='child icon'></i>Fun: 30%</p>" + 
           "<p id='romanceValue'><i class='heart icon'></i>Romantic: 60%</p>" +
+          "<p><i class='child icon'></i>Fun: 30%</p>" + 
           "<p id='adventureValue'><i class='send icon'></i>Adventure: 10%</p>"  
       });
       infowindow4.open(map,marker4);
