@@ -14,9 +14,15 @@ Meteor.methods({
 			var destination = input.destination;
 		}
 		var outboundDate = input.outboundDate;
+		var query = "&sortorder=asc&sorttype=price";
 		var inboundDate = input.inboundDate;
-		url = url +"/"+ origin +"/"+ destination +"/"+ outboundDate +"/"+ inboundDate + "?apikey=" + APIKey;
-		return HTTP.get(url);
+		url = url +"/"+ origin +"/"+ destination +"/"+ outboundDate +"/"+ inboundDate + "?apikey=" + APIKey + query;
+		return HTTP.get(url, {
+			headers: {
+				'Host': 'api.skyscanner.net',
+				'Accept': 'application/json'
+			}
+		});
 	},
 	createLiveFlightSession: function(input) {
 		var APIKey = "ah784286533249542154336639656685";
@@ -43,5 +49,16 @@ Meteor.methods({
 	},
 	pollSession: function(sessionKey) {
 		var APIKey = "ah784286533249542154336639656685";
-	}
+		// var url = "http://api.skyscanner.net/apiservices/pricing/v1.0/";
+		// url = url + sessionKey + "?apikey=" + APIKey;
+		var query = "&sortorder=asc&sorttype=price";
+		var url = sessionKey + "?apikey=" + APIKey + query;
+		console.log(url);
+		return HTTP.get(url,{
+			headers: {
+				'Host': 'api.skyscanner.net',
+				'Accept': 'application/json'
+			},
+		});
+	}	
 });

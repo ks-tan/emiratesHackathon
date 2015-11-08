@@ -1,8 +1,12 @@
 Template.flights.events({
 	"input #testTextField": function (event) {
 		var a = {};
-    createLiveFlightSession(a);
-  }
+    	createLiveFlightSession(a);
+ 	},
+ 	"click .button .primary": function (event) {
+ 		var input = {};
+ 		createLiveFlightSession(input);
+ 	}
 });
 
 // the function below is the API call to skyscanner's live pricing
@@ -11,8 +15,22 @@ Template.flights.events({
 ***/
 
 function requestLiveFlight(input) {
-
+	if (input.data.Status == "UpdatesComplete") {
+		// finish recursion
+		return;
+	} else {
+		Meteor.call("pollSession", result.headers.location, function (error, result){
+				if (error) {
+					console.log(error);
+				} else {
+					console.log(result);
+					requestLiveFlight(input);
+				}
+			});
+	}
 }
+
+// http://api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en-US/37.776,-122.415-latlong/36.125,-97.065-latlong/2015-11-20/2015-11-25?apikey=ah784286533249542154336639656685
 
 function createLiveFlightSession(input) {
 	input = validateLiveFlightInput(input);
@@ -21,6 +39,8 @@ function createLiveFlightSession(input) {
 			console.log(error);
 		} else {
 			console.log(result);
+			console.log(result.headers.location);
+			
 		}
 	});
 }
