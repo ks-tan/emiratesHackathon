@@ -1,1 +1,3 @@
-smap.js
+// Template.smap.helpers({
+	
+// })
