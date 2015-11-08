@@ -22,28 +22,26 @@ Meteor.methods({
 		var APIKey = "ah784286533249542154336639656685";
 		var url = "http://api.skyscanner.net/apiservices/pricing/v1.0/?apikey=" + APIKey;
 		var urlQuery = "country=US&currency=USD&locale=en-US&locationSchema=iata&grouppricing=true";
-		var origin = "&originplace=" + input.origin;
-		var destination = "&destinationplace=" + input.destination;
+		var origin = "&originplace=" + input.origin +"-latlong";
+		var destination = "&destinationplace=" + input.destination +"-latlong";
 		var outboundDate = "&outbounddate=" + input.outboundDate;
 		var inboundDate = "&inbounddate=" + input.inboundDate;
 		var adults = "&adults=" + input.noOfAdults; // 1-8
 		var children = "&children=" + input.noOfChildren; // 0-8
 		var infants = "&infants=" + input.noOfInfants; // 0- no of adults
 		var cabinClass = "&cabinclass=" + input.cabinClass; // ["Economy", "PremiumEconomy", "Business", "First"]
-		urlQuery = url + origin + destination + outboundDate + inboundDate + adults + children + infants + cabinClass;
+		urlQuery = urlQuery + origin + destination + outboundDate + inboundDate + adults + children + infants + cabinClass;
+		console.log(urlQuery);
 
-		HTTP.get(url, {
-			Headers: {
-				"Host": "api.skyscanner.net"
-				"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-			}
-		}, function(error,success) {
-			if (error) {
-				console.log(error);
-			} else {
-				console.log(result);
-			}
+		return HTTP.post(url, {
+			headers: {
+				'Host': 'api.skyscanner.net',
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}, 
+			content: urlQuery
 		});
-
+	},
+	pollSession: function(sessionKey) {
+		var APIKey = "ah784286533249542154336639656685";
 	}
 });
