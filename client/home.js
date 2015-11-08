@@ -18,9 +18,15 @@ Template.home.onCreated(function() {
       $("#yourMarker").modal("show");
     });
 
+    $("#openMenu").on('click', function(event){
+      $('.ui.sidebar').sidebar('toggle');
+    });
+
       	google.maps.event.addListener(map.instance, 'click', function(event) {
       		showListModal(event);
       	});
+
+        map.instance.setOptions({ minZoom: 4, maxZoom: 5 });
 
       	var markers = {};
 
@@ -75,8 +81,9 @@ Template.home.helpers({
     	var latLng = Geolocation.latLng();
  	    if (GoogleMaps.loaded() && latLng) {
 	        return {
-        		center: new google.maps.LatLng(latLng.lat, latLng.lng),
-	          	zoom: 5
+        		center: new google.maps.LatLng(39.97712, -97.910156),
+	          zoom: 4,
+            disableDefaultUI: true
 	        };
 	    }
     }

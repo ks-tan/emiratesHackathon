@@ -2,7 +2,24 @@
 	<head>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 	</head>
-	{{> navigationBar}}
-	{{> yield}}
+	<div id = "sidebar" class="ui left demo vertical inverted sidebar labeled icon menu">
+	  	<a class="item" href = "{{pathFor route='home'}}">
+	    	<i class="child icon"></i>	      
+	      	SmapIt! Home
+	    </a>
+	    <a class="item yourMood">
+	    	<i class="heart icon"></i>
+	      	Smap your feels!
+	    </a>
+	    <a class="item">
+	    	<i class="send icon"></i>
+	      	SmapIt-inery!
+	    </a>
+	</div>
+	<div class = "pusher">
+		<a id = "openMenu"><img id = "logo" src = "images/world.gif"></a>
+<!-- 		{{> navigationBar}} -->
+		{{> yield}}
+	</div>
 
 </template>
