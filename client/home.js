@@ -114,11 +114,12 @@ Template.home.onCreated(function() {
             }
         		var lat = document.latitude;
         		var lng = document.longitude;
-        // 		var image = {
-  				  //   url: 'images/'+mood+'.png',
-  				  //   scaledSize: new google.maps.Size(65, 65),
-  				  //   origin: new google.maps.Point(0, 0),
-				    // };
+
+        		var image = {
+  				    url: 'images/'+mood+'.png',
+  				    scaledSize: new google.maps.Size(40, 40),
+  				    origin: new google.maps.Point(0, 0),
+				    };
 
 
           		var marker = new google.maps.Marker({
@@ -127,7 +128,7 @@ Template.home.onCreated(function() {
             		position: new google.maps.LatLng(lat,lng),
             		map: map.instance,
             		icon: image,
-            		opacity: 0.8,
+            		opacity: 0.3,
             		id: document._id
           		});
 

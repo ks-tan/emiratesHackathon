@@ -29,13 +29,13 @@ body.pushable > .pusher{
 	background-color: #3F2A5E;
 }
 
-#outerCard {
+/*#outerCard {
 	background-color: #3F2A5E;
 	width: 80%;
 	margin: auto;
 	color: white;
 	font-size: 20px;
-}
+}*/
 
 #innerCard {
 	background-color: #ffffff;
@@ -57,4 +57,8 @@ body.pushable > .pusher{
 #smappedButton{
 	width: 100%;
 	margin: auto;
+}
+
+.contain {
+	width: 80%;
 }
