@@ -55,12 +55,12 @@
 	<div class = "ui three column grid container">
 		{{#each eventList}}
 		<div class = "fluid column">
-			<div class = "ui card">
+			<div class = "ui card" id = "listModalCard">
 				<div class = "ui large image">
 					{{#if pictureUrl }}
-					<img src = "{{pictureUrl}}" >
+					<img src = "{{pictureUrl}}" id="listModalImg">
 					{{else}}
-					<img src = 'images/placeholder.png' >
+					<img src = 'images/placeholder.png' id="listModalImg">
 					{{/if}}					
 				</div>
 				<div class = "content">
